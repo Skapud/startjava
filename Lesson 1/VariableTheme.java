@@ -7,7 +7,7 @@ public class VariableTheme {
         System.out.println("Размер оперативной памяти = " + ram + "mb");
         int hdSize = 100;
         System.out.println("Размер жесткого диска = " + hdSize + "TB");
-        long videoRam = 16;
+        long videoRam = 16l;
         System.out.println("Размер оперативной памяти видеокарты = " + videoRam + "GB");
         float baseCpuFreq = 4.7f;
         System.out.println("Базова частота процессора = " + baseCpuFreq + "GHz");
@@ -34,5 +34,16 @@ public class VariableTheme {
         System.out.println("    J   a a  v   v  a a");
         System.out.println(" J  J  aaaaa  V V  aaaaa");
         System.out.println("  JJ  a     a  V  a     a");
+
+        System.out.println("\n" + "4. Вывод min и max значений целых числовых типов");
+        byte num_1 = 127;
+        short num_2 = 32767;
+        int num_3 = 2147483647;
+        long num_4 = 9223372036854775807l;
+        System.out.println(num_1);
+        System.out.println(num_2);
+        System.out.println(num_3);
+        System.out.println(num_4);
+
     }
 }

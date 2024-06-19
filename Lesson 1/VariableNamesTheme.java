@@ -6,60 +6,60 @@ public class VariableNamesTheme {
         System.out.println("Цифра = " + digit);
 
         // сумма чисел
-        int sumNumbers = 10;
-        System.out.println("Сумма чисел = " + sumNumbers);
+        int sumNums = 10;
+        System.out.println("Сумма чисел = " + sumNums);
 
         // произведение цифр
-        int multipleDigits = 15;
-        System.out.println("Произведение цифр = " + multipleDigits);
+        int multiplyDigits = 15;
+        System.out.println("Произведение цифр = " + multiplyDigits);
 
         // максимальное число
-        int maxNumber = 20;
-        System.out.println("Максимальное число = " + maxNumber);
+        int maxNum = 20;
+        System.out.println("Максимальное число = " + maxNum);
 
         // количество десятков
-        int numberOfTens = 25;
-        System.out.println("Количество десятков = " + numberOfTens);
+        int numOfTens = 25;
+        System.out.println("Количество десятков = " + numOfTens);
 
         // вес собаки
-        int weightDog = 30;
-        System.out.println("Вес собаки = " + weightDog);
+        int dogWeight = 30;
+        System.out.println("Вес собаки = " + dogWeight);
 
         // исходное число
-        int sourceNumber = 35;
-        System.out.println("Исходное число = " + sourceNumber);
+        int sourceNum = 35;
+        System.out.println("Исходное число = " + sourceNum);
 
         // процент по вкладу
-        double percentDeposit = 11.1;
-        System.out.println("Процент по вкладу = " + percentDeposit);
+        double rate = 11.1;
+        System.out.println("Процент по вкладу = " + rate);
 
         // переменная хранит символ &
         String symbol = "&";
         System.out.println("Переменная хранит символ & = " + symbol);
 
         // код ошибки
-        int errorNumber = 12;
-        System.out.println("Код ошибки = " + errorNumber);
+        int errorCode = 12;
+        System.out.println("Код ошибки = " + errorCode);
 
         // тип сообщения
         String messageType = "Cursive";
         System.out.println("Тип сообщения = " + messageType);
 
         // число нулей
-        int zeroNumbers = 6;
-        System.out.println("Число нулей = " + zeroNumbers);
+        int zeroNums = 6;
+        System.out.println("Число нулей = " + zeroNums);
 
         // уникальное число
-        double uniqueNumber = 666.66;
-        System.out.println("Уникальное число = " + uniqueNumber);
+        double uniqueNum = 666.66;
+        System.out.println("Уникальное число = " + uniqueNum);
 
         // случайное число
-        double randomNumber = 10.15;
-        System.out.println("Случайное число = " + randomNumber);
+        double randomNum = 10.15;
+        System.out.println("Случайное число = " + randomNum);
 
         // математическое выражение
-        String mathStatement = "(15 + 15) * 15";
-        System.out.println("Математическое выражение = " + mathStatement);
+        String mathExpression = "(15 + 15) * 15";
+        System.out.println("Математическое выражение = " + mathExpression);
 
         // счет в игре
         String gameScore = "1 - 2";
@@ -86,8 +86,8 @@ public class VariableNamesTheme {
         System.out.println("Окончание диапазона = " + endRange);
 
         // полное имя работника месяца
-        String bestWorkerName = "Бари Алибасов";
-        System.out.println("Полное имя работника месяца = " + bestWorkerName);
+        String employeeOfTheMonthFullName = "Бари Алибасов";
+        System.out.println("Полное имя работника месяца = " + employeeOfTheMonthFullName);
 
         // заголовок электронной книги
         String ebookTitle = "Человек-невидимка";
@@ -106,8 +106,8 @@ public class VariableNamesTheme {
         System.out.println("Счетчик = " + count);
 
         // путь до файла
-        String pathName = "/user/documents/java/lesson1";
-        System.out.println("Путь до файла = " + pathName);
+        String pathRoute = "/user/documents/java/lesson1";
+        System.out.println("Путь до файла = " + pathRoute);
 
         // количество чисел в каждой строке
         int numOfDigitsInEachLine = 1000;
@@ -120,8 +120,8 @@ public class VariableNamesTheme {
         System.out.println("Cотни равны? " + isEqualHundreds);
 
         // компьютер включен?
-        boolean isPcActive = false;
-        System.out.println("Компьютер включен? " + isPcActive);
+        boolean isOnPc = false;
+        System.out.println("Компьютер включен? " + isOnPc);
 
         // есть равные цифры?
         boolean hasEqualDigits = true;
@@ -154,28 +154,28 @@ public class VariableNamesTheme {
         System.out.println("\n" + "3. Аббревиатуры"); 
 
         // старый universally unique identifier
-        String ouui = "123e4567-e89b-12d3-a456-426614174000";
-        System.out.println("Old UUI = " + ouui);
+        String oldUuid = "123e4567-e89b-12d3-a456-426614174000";
+        System.out.println("Old UUID = " + oldUuid);
 
         // производитель оперативной памяти
-        String ram = "Corsair";
-        System.out.println("RAM Producer = " + ram);
+        String ramManufacturer = "Corsair";
+        System.out.println("RAM Manufacturer = " + ramManufacturer);
 
         // емкость жесткого диска
-        String hdm = "500 mb";
-        System.out.println("HD Capacity = " + hdm);
+        String hdStorage = "500 mb";
+        System.out.println("HD Storage = " + hdStorage);
 
         // протокол передачи гипертекста
         String http = "GET /wiki/страница HTTP/1.1";
         System.out.println("HTTP = " + http);
 
         // сокращенный uniform resource locator
-        String surl = "ya.ru";
-        System.out.println("URL = " + surl);
+        String shortUrl = "ya.ru";
+        System.out.println("Short URL = " + shortUrl);
 
         // новый идентификатор клиента
-        String nci = "watermellon";
-        System.out.println("New CI = " + nci);
+        String newCuid = "watermellon";
+        System.out.println("New CUID = " + newCuid);
 
         // american standard code for information interchange
         int ascii = 322;

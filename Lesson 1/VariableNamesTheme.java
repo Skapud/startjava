@@ -3,10 +3,10 @@ public class VariableNamesTheme {
         System.out.println("1. Разные переменные");
         // цифра
         int digit = 1;
-        System.out.println("Цифра = " + Digit);
+        System.out.println("Цифра = " + digit);
 
         // сумма чисел
-        double sumNumbers = 10;
+        int sumNumbers = 10;
         System.out.println("Сумма чисел = " + sumNumbers);
 
         // произведение цифр
@@ -14,7 +14,7 @@ public class VariableNamesTheme {
         System.out.println("Произведение цифр = " + multipleDigits);
 
         // максимальное число
-        double maxNumber = 20;
+        int maxNumber = 20;
         System.out.println("Максимальное число = " + maxNumber);
 
         // количество десятков
@@ -22,11 +22,11 @@ public class VariableNamesTheme {
         System.out.println("Количество десятков = " + numberOfTens);
 
         // вес собаки
-        double weightDog = 30;
+        int weightDog = 30;
         System.out.println("Вес собаки = " + weightDog);
 
         // исходное число
-        double sourceNumber = 35;
+        int sourceNumber = 35;
         System.out.println("Исходное число = " + sourceNumber);
 
         // процент по вкладу
@@ -54,7 +54,7 @@ public class VariableNamesTheme {
         System.out.println("Уникальное число = " + uniqueNumber);
 
         // случайное число
-        double randomNumber = 10;
+        double randomNumber = 10.15;
         System.out.println("Случайное число = " + randomNumber);
 
         // математическое выражение
@@ -116,66 +116,66 @@ public class VariableNamesTheme {
         System.out.println("2. Boolean-переменные");
 
         // сотни равны?
-        boolean isHundredsEqual = true;
-        System.out.println("Cотни равны? " + isHundredsEqual);
+        boolean isEqualHundreds = true;
+        System.out.println("Cотни равны? " + isEqualHundreds);
 
         // компьютер включен?
-        boolean isPcOn = false;
-        System.out.println("Компьютер включен? " + isPcOn);
+        boolean isPcActive = false;
+        System.out.println("Компьютер включен? " + isPcActive);
 
         // есть равные цифры?
-        boolean isEqualDigitalsExist = true;
-        System.out.println("Есть равные цифры? " + isEqualDigitalsExist);
+        boolean hasEqualDigits = true;
+        System.out.println("Есть равные цифры? " + hasEqualDigits);
 
         // создано?
         boolean isCreated = true;
         System.out.println("Создано? " + isCreated);
 
         // пустое?
-        boolean isEmpty = false;
-        System.out.println("Пустое? " + isEmpty);
+        boolean empty = false;
+        System.out.println("Пустое? " + empty);
 
         // активное?
-        boolean isActive = true;
-        System.out.println("Активное? " + isActive);
+        boolean active = true;
+        System.out.println("Активное? " + active);
 
         // новое?
         boolean isNew = false;
         System.out.println("Новое? " + isNew);
 
         // электронная почта действительная?
-        boolean isEmailValid = true;
-        System.out.println("Электронная почта действительная? " + isEmailValid);
+        boolean isValidEmail = true;
+        System.out.println("Электронная почта действительная? " + isValidEmail);
 
         // имеются уникальные строки?
-        boolean isUniqueLinesExist = true;
-        System.out.println("Имеются уникальные строки? " + isUniqueLinesExist);
+        boolean hasUniqueLines = true;
+        System.out.println("Имеются уникальные строки? " + hasUniqueLines);
 
         System.out.println("3. Аббревиатуры"); 
 
         // старый universally unique identifier
-        String oldUui = "123e4567-e89b-12d3-a456-426614174000";
-        System.out.println("Old UUI = " + oldUui);
+        String ouui = "123e4567-e89b-12d3-a456-426614174000";
+        System.out.println("Old UUI = " + ouui);
 
         // производитель оперативной памяти
-        String ramProducer = "Corsair";
-        System.out.println("RAM Producer = " + ramProducer);
+        String ram = "Corsair";
+        System.out.println("RAM Producer = " + ram);
 
         // емкость жесткого диска
-        String hdCapacity = "500 mb";
-        System.out.println("HD Capacity = " + hdCapacity);
+        String hdm = "500 mb";
+        System.out.println("HD Capacity = " + hdm);
 
         // протокол передачи гипертекста
         String http = "GET /wiki/страница HTTP/1.1";
         System.out.println("HTTP = " + http);
 
         // сокращенный uniform resource locator
-        String cutedUrl = "ya.ru";
-        System.out.println("URL = " + cutedUrl);
+        String surl = "ya.ru";
+        System.out.println("URL = " + surl);
 
         // новый идентификатор клиента
-        String newCi = "watermellon";
-        System.out.println("New CI = " + newCi);
+        String nci = "watermellon";
+        System.out.println("New CI = " + nci);
 
         // american standard code for information interchange
         int ascii = 322;

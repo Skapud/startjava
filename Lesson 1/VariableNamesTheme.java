@@ -10,8 +10,8 @@ public class VariableNamesTheme {
         System.out.println("Сумма чисел = " + sumNums);
 
         // произведение цифр
-        int multiplyDigits = 15;
-        System.out.println("Произведение цифр = " + multiplyDigits);
+        int productDigits = 15;
+        System.out.println("Произведение цифр = " + productDigits);
 
         // максимальное число
         int maxNum = 20;
@@ -86,8 +86,8 @@ public class VariableNamesTheme {
         System.out.println("Окончание диапазона = " + endRange);
 
         // полное имя работника месяца
-        String employeeOfTheMonthFullName = "Бари Алибасов";
-        System.out.println("Полное имя работника месяца = " + employeeOfTheMonthFullName);
+        String employeeMonthFullName = "Бари Алибасов";
+        System.out.println("Полное имя работника месяца = " + employeeMonthFullName);
 
         // заголовок электронной книги
         String ebookTitle = "Человек-невидимка";
@@ -106,8 +106,8 @@ public class VariableNamesTheme {
         System.out.println("Счетчик = " + count);
 
         // путь до файла
-        String pathRoute = "/user/documents/java/lesson1";
-        System.out.println("Путь до файла = " + pathRoute);
+        String filePath = "/user/documents/java/lesson1";
+        System.out.println("Путь до файла = " + filePath);
 
         // количество чисел в каждой строке
         int numOfDigitsInEachLine = 1000;
@@ -162,8 +162,8 @@ public class VariableNamesTheme {
         System.out.println("RAM Manufacturer = " + ramManufacturer);
 
         // емкость жесткого диска
-        String hdStorage = "500 mb";
-        System.out.println("HD Storage = " + hdStorage);
+        String hdCapacity = "500 mb";
+        System.out.println("HD Capacity = " + hdCapacity);
 
         // протокол передачи гипертекста
         String http = "GET /wiki/страница HTTP/1.1";
@@ -174,8 +174,8 @@ public class VariableNamesTheme {
         System.out.println("Short URL = " + shortUrl);
 
         // новый идентификатор клиента
-        String newCuid = "watermellon";
-        System.out.println("New CUID = " + newCuid);
+        String newCid = "watermellon";
+        System.out.println("New CID = " + newCid);
 
         // american standard code for information interchange
         int ascii = 322;

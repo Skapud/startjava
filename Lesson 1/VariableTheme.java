@@ -3,16 +3,16 @@ public class VariableTheme {
         System.out.println("1. Вывод характеристик компьютера");
         byte numCpu = 8;
         System.out.println("Количество процессоров = " + numCpu);
-        short ram = 16384;
-        System.out.println("Размер оперативной памяти = " + ram + "mb");
+        short ramCapacity = 16384;
+        System.out.println("Размер оперативной памяти = " + ramCapacity + "mb");
         int hdCapacity = 100;
         System.out.println("Размер жесткого диска = " + hdCapacity + "TB");
         long videoRam = 16L;
         System.out.println("Размер оперативной памяти видеокарты = " + videoRam + "GB");
-        float baseCpuFreq = 4.7f;
-        System.out.println("Базова частота процессора = " + baseCpuFreq + "GHz");
-        double maxCpuFreq = 5.35;
-        System.out.println("Максимальная частота процессора = " + maxCpuFreq + "GHz");
+        float freqCpuBase = 4.7f;
+        System.out.println("Базова частота процессора = " + freqCpuBase + "GHz");
+        double freqCpuMax = 5.35;
+        System.out.println("Максимальная частота процессора = " + freqCpuMax + "GHz");
         char cpuNameMark = 'K';
         System.out.println("Маркировка названия процессора Intel = " + cpuNameMark);
         boolean hasEmptyRamSlots = true;
@@ -50,28 +50,59 @@ public class VariableTheme {
         System.out.println("\n" + "5. Перестановка значений переменных");
         int num5 = 2;
         int num6 = 5;
-        System.out.println("Исходные значения переменных:" + 
+        System.out.println("С помощью третьей переменной" + "\nИсходные значения переменных:" + 
                 "\nNum5 = " + num5 + "\nNum6 = " + num6);
-        System.out.println("С помощью третьей переменной.");
         int num7 = num5;
         num5 = num6;
         num6 = num7;
         System.out.println("Новые значения переменных:\n" + 
                 "Num5 = " + num5 + "\nNum6 = " + num6);
-        System.out.println("С помощью арифметических операций.");
-        System.out.println("Исходные значения переменных:" + 
+        System.out.println("С помощью арифметических операций" + "\nИсходные значения переменных:" + 
                 "\nNum5 = " + num5 + "\nNum6 = " + num6);
         num5 = num5 + num6;
         num6 = num5 - num6;
         num5 = num5 - num6;
         System.out.println("Новые значения переменных:\n" + 
                 "Num5 = " + num5 + "\nNum6 = " + num6);
-        System.out.println("С помощью побитовой операции ^");
-        System.out.println("Исходные значения переменных:" + 
+        System.out.println("С помощью побитовой операции ^" + "\nИсходные значения переменных:" + 
                 "\nNum5 = " + num5 + "\nNum6 = " + num6);
         num5 = 0 ^ num6;
         num6 = 7 ^ num5;
         System.out.println("Новые значения переменных:\n" + 
                 "Num5 = " + num5 + "\nNum6 = " + num6);
+
+        System.out.println("\n" + "6. Вывод символов и их кодов");
+        char num8 = '$';
+        char num9 = '*';
+        char num10 = '@';
+        char num11 = '|';
+        char num12 = '~';
+        System.out.println("Код символа " + "  Символ\n" + 
+                Integer.toString(num8) + "            " + num8 + "\n" +
+                Integer.toString(num9) + "            " + num9 + "\n" +
+                Integer.toString(num10) + "            " + num10 + "\n" +
+                Integer.toString(num11) + "           " + num11 + "\n" +
+                Integer.toString(num12) + "           " + num12);
+
+        System.out.println("\n" + "7. Вывод в консоль ASCII-арт Дюка");
+        char num13 = '/';
+        char num14 = '\\';
+        char num15 = '_';
+        char num16 = '(';
+        char num17 = ')';
+        System.out.println("    " + num13 + num14 + " \n" + "   " + num13 + "  " + 
+                num14 + " \n" + "  " + num13 + num15 + num16 + " " + num17 + num14 + 
+                " \n" + " " + num13 + "      " + num14 + " \n" + num13 + num15 + 
+                num15 + num15 + num15 + num13 + num14 + num15 + num15 + num14);
+
+        System.out.println("\n" + "8. Манипуляции с сотнями, десятками и единицами числа");
+        System.out.println("Число 123 содержит:" + "\n сотен - " + 123 / 100 + 
+                "\n десятков - " + 123 % 100 / 10 + "\n единиц - " + 123 % 120 + 
+                "\nСумма разрядов = " + (123 / 100 + 123 % 100 / 10 + 123 % 120) + 
+                "\nПроизведение разрядов = " + (123 / 100) * (123 % 100 / 10) * (123 % 120));
+
+        System.out.println("\n" + "9. Перевод секунд в часы, минуты и секунды");
+        System.out.println("Имеется 86399 сек" + "\nЭто " + 86399 / 3600 + ":" + 
+                86399 % 3600 / 60 + ":" + 86399 % 3600 % 60);
     }
 }

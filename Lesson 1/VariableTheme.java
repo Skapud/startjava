@@ -33,93 +33,89 @@ public class VariableTheme {
         System.out.println("Стоимость товаров со скидкой = " + discountPrice);
 
         System.out.println("\n3. Вывод слова JAVA");
-        System.out.println("    J    a  v     v  a" + 
-                "\n    J   a a  v   v  a a" + 
-                "\n J  J  aaaaa  V V  aaaaa" + 
-                "\n  JJ  a     a  V  a     a");
+        System.out.println("    J    a  v     v  a\n" + 
+                "    J   a a  v   v  a a\n" + 
+                " J  J  aaaaa  V V  aaaaa\n" + 
+                "  JJ  a     a  V  a     a");
 
         System.out.println("\n4. Вывод min и max значений целых числовых типов");
         byte extremesByteValue = 127;
-        System.out.println("Изначальное num1 = " + extremesByteValue + 
-                "\nПосле инкремента num1 = " + ++extremesByteValue +
-                "\nПосле декремента num1 = " + --extremesByteValue);
+        System.out.println("Изначальное значение = " + extremesByteValue + 
+                "\nПосле инкремента = " + ++extremesByteValue +
+                "\nПосле декремента = " + --extremesByteValue);
         short extremesShortValue = 32767;
-        System.out.println("Изначальное num2 = " + extremesShortValue +
-                "\nПосле инкремента num2 = " + ++extremesShortValue + 
-                "\nПосле декремента num2 = " + --extremesShortValue);
+        System.out.println("Изначальное значение = " + extremesShortValue +
+                "\nПосле инкремента = " + ++extremesShortValue + 
+                "\nПосле декремента = " + --extremesShortValue);
         int extremesIntValue = 2147483647;
-        System.out.println("Изначальное num3 = " + extremesIntValue + 
-                "\nПосле инкремента num3 = " + ++extremesIntValue + 
-                "\nПосле декремента num3 = " + --extremesIntValue);
+        System.out.println("Изначальное значение = " + extremesIntValue + 
+                "\nПосле инкремента = " + ++extremesIntValue + 
+                "\nПосле декремента = " + --extremesIntValue);
         long extremesLongValue = 9223372036854775807L;
-        System.out.println("Изначальное num4 = " + extremesLongValue + 
-                "\nПосле инкремента num4 = " + ++extremesLongValue + 
-                "\nПосле декремента num4 = " + --extremesLongValue);
+        System.out.println("Изначальное значение = " + extremesLongValue + 
+                "\nПосле инкремента = " + ++extremesLongValue + 
+                "\nПосле декремента = " + --extremesLongValue);
         char extremesCharValue = 65535;
-        System.out.println("Изначальное num5 = " + (int) extremesCharValue + 
-                "\nПосле инкремента num5 = " + (int) ++extremesCharValue + 
-                "\nПосле декремента num5 = " + (int) --extremesCharValue);
+        System.out.println("Изначальное значение = " + (int) extremesCharValue + 
+                "\nПосле инкремента = " + (int) ++extremesCharValue + 
+                "\nПосле декремента = " + (int) --extremesCharValue);
 
         System.out.println("\n5. Перестановка значений переменных");
         int a = 2;
         int b = 5;
-        System.out.println("С помощью третьей переменной" + 
-                "\nИсходные значения переменных:" + 
-                "\na = " + a + "\nb = " + b);
+        System.out.println("Исходные значения переменных:\n" + 
+                "a = " + a + " b = " + b + "\n" + 
+                "С помощью третьей переменной");
         int swap = a;
         a = b;
         b = swap;
-        System.out.println("Новые значения переменных:" + 
-                "\na = " + a + "\nb = " + b);
-        System.out.println("С помощью арифметических операций" + 
-                "\nИсходные значения переменных:" + 
-                "\na = " + a + "\nb = " + b);
+        System.out.println("Новые значения переменных:\n" + 
+                "a = " + a + " b = " + b);
+        System.out.println("С помощью арифметических операций");
         a += b;
         b = a - b;
         a -= b;
         System.out.println("Новые значения переменных:\n" + 
-                "a = " + a + "\nb = " + b);
-        System.out.println("С помощью побитовой операции ^" + 
-                "\nИсходные значения переменных:" + 
-                "\na = " + a + "\nb = " + b);
+                "a = " + a + " b = " + b);
+        System.out.println("С помощью побитовой операции ^");
         a ^= b;
         b ^= a;
         a ^= b;
         System.out.println("Новые значения переменных:\n" + 
-                "a = " + a + "\nb = " + b);
+                "a = " + a + " b = " + b);
 
         System.out.println("\n6. Вывод символов и их кодов");
         char dollar = '$';
         char asterisk = '*';
-        char at = '@';
-        char barVertical = '|';
+        char atSign = '@';
+        char verticalBar = '|';
         char tilde = '~';
-        System.out.println("Код символа " + "  Символ\n" + 
+        System.out.println("Код символа   Символ\n" + 
                 (int) dollar + "            " + dollar + "\n" +
                 (int) asterisk + "            " + asterisk + "\n" +
-                (int) at + "            " + at + "\n" +
-                (int) barVertical + "           " + barVertical + "\n" +
+                (int) atSign + "            " + atSign + "\n" +
+                (int) verticalBar + "           " + verticalBar + "\n" +
                 (int) tilde + "           " + tilde);
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка");
         char slash = '/';
         char backslash = '\\';
         char underscore = '_';
-        char parenthesisLeft = '(';
-        char parenthesisRight = ')';
-        System.out.println("    " + slash + backslash + 
-                " \n" + "   " + slash + "  " + backslash + 
-                " \n" + "  " + slash + underscore + parenthesisLeft + " " + parenthesisRight + 
-                backslash + 
-                " \n" + " " + slash + "      " + backslash + 
-                " \n" + slash + underscore + underscore + underscore + underscore + slash + 
+        char leftParenthesis = '(';
+        char rightParenthesis = ')';
+        System.out.println("    " + slash + backslash + " \n   " + slash + 
+                "  " + backslash + " \n  " + slash + underscore + 
+                leftParenthesis + " " + rightParenthesis + backslash + " \n " + 
+                slash + "      " + backslash + " \n" + slash + 
+                underscore + underscore + underscore + underscore + slash + 
                 backslash + underscore + underscore + backslash);
 
         System.out.println("\n8. Манипуляции с сотнями, десятками и единицами числа");
-        int hundreds = 123 / 100;
-        int tens = 123 % 100 / 10;
-        int ones = 123 % 120;
-        System.out.println("Число 123 содержит:" + 
+        int digit = 987;
+        int hundreds = digit / 100;
+        int tens = digit % 100 / 10;
+        int ones = digit % 10;
+        System.out.println("Число " + digit + " содержит:" + 
                 "\n сотен - " + hundreds + 
                 "\n десятков - " + tens + 
                 "\n единиц - " + ones + 
@@ -127,11 +123,11 @@ public class VariableTheme {
                 "\nПроизведение разрядов = " + hundreds * tens * ones);
 
         System.out.println("\n9. Перевод секунд в часы, минуты и секунды");
-        int hours = 86399 / 3600;
-        int minutes = 86399 % 3600 / 60;
-        int seconds = 86399 % 60;
+        int hh = 86399 / 3600;
+        int mm = 86399 % 3600 / 60;
+        int ss = 86399 % 60;
         System.out.println("Имеется 86399 сек" + 
-                "\nЭто " + hours + ":" + minutes + ":" + seconds);
+                "\nЭто " + hh + ":" + mm + ":" + ss);
 
         System.out.println("\n10. Расчет стоимости товара со скидкой");
         var penPriceDecimal = new BigDecimal("105.5");

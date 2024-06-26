@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class IfElseStatementTheme {
     public static void main(String[] args) {
         System.out.println("1. Перевод псевдокода на язык Java");
@@ -151,9 +154,41 @@ public class IfElseStatementTheme {
         double productionCostMonth = 9001.729;
         double incomeYear = (incomeMonth - rentMonth - productionCostMonth) * 12;
         if (incomeYear > 0) {
-            System.out.printf("Прибыль за год: +" + incomeYear + " руб.");
+            System.out.println("Прибыль за год: +" + incomeYear + " руб.");
         } else {
-            System.out.printf("Прибыль за год: " + incomeYear + " руб.");
+            System.out.println("Прибыль за год: " + incomeYear + " руб.");
+        }
+
+        System.out.println("\n9. Подсчет начисленных банком % со *");
+        var depositInitial1 = new BigDecimal("321123.59");
+        System.out.println("Суммка вклада : " + depositInitial1);
+        var rate1 = new BigDecimal("0");
+        if (depositInitial1.compareTo(new BigDecimal(100000)) < 0) {
+            rate1 = new BigDecimal("0.05");
+        } else if (depositInitial1.compareTo(new BigDecimal(100000)) > 0 && 
+                depositInitial1.compareTo(new BigDecimal(300000)) < 0) {
+            rate1 = new BigDecimal("0.07");
+        } else {
+            rate1 = new BigDecimal("0.1");
+        }
+        var interestAmount1 = depositInitial1.multiply(rate1)
+                .setScale(2, RoundingMode.HALF_UP);
+        var depositFinal1 = depositInitial1.add(interestAmount1)
+                .setScale(2, RoundingMode.HALF_UP);
+        System.out.println("Сумма начисленного % : " + interestAmount1 + 
+                    "\nИтоговая сумма с % :" + depositFinal1);
+
+        System.out.println("\n10. Расчет годовой прибыли со *");
+        var incomeMonth1 = new BigDecimal("13025.233");
+        var rentmonth1 = new BigDecimal("5123.018");
+        var productionCostMonth1 = new BigDecimal("9001.729");
+        var incomeYear1 = incomeMonth1.subtract(rentmonth1).subtract(
+                productionCostMonth1).multiply(new BigDecimal("12"))
+                .setScale(2, RoundingMode.HALF_UP);
+        if (incomeYear1.compareTo(new BigDecimal(0)) > 0) {
+            System.out.printf("Прибыль за год: +" + incomeYear1 + " руб.");
+        } else {
+            System.out.printf("Прибыль за год: " + incomeYear1 + " руб.");
         }
     }
 }

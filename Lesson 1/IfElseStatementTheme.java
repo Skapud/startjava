@@ -18,9 +18,9 @@ public class IfElseStatementTheme {
         }
         double height = 1.87;
         if (height < 1.8) {
-            System.out.println("Рост игрока менее 1.8м");
+            System.out.println("Рост игрока менее 1.8 м");
         } else {
-            System.out.println("Рост игрока более 1.8м");
+            System.out.println("Рост игрока более 1.8 м");
         }
         String name = "Andrew";
         char firstLetterName = name.charAt(0);
@@ -48,18 +48,15 @@ public class IfElseStatementTheme {
         if (num == 0) {
             System.out.println("Число равно нулю");
         } else {
-            if (num % 2 == 0) {
-                if (num > 0) {
-                    System.out.println(num + " является четным и положителньым");
-                } else {
-                    System.out.println(num + " является четным и отрицательным");
-                }
+            if (num > 0) {
+                System.out.print(num + " является положительным");
             } else {
-                if (num < 0) {
-                    System.out.println(num + " является нечетным и отрицательным");
-                } else {
-                    System.out.println(num + " является нечетным и положительным");
-                }
+                System.out.print(num + " является отрицательным");
+            }
+            if (num % 2 == 0) {
+                System.out.print(" и четным\n");
+            } else {
+                System.out.print(" и нечетным\n");
             }
         }
 
@@ -89,28 +86,24 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n5. Определение символа по его коду");
-        char sym = '\u0031';
-        if (Character.isLetter(sym)) {
-            if (Character.isLowerCase(sym)) {
-                System.out.println(sym + " - маленькая буква");
-            } else {
-                System.out.println(sym + " - большая буква");
-            }
-        } else if (Character.isDigit(sym)) {
-            System.out.println(sym + " - цифра");
+        char searchedChar = '\u0031';
+        if (Character.isLowerCase(searchedChar)) {
+            System.out.println(searchedChar + " - маленькая буква");
+        } else if (Character.isUpperCase(searchedChar)) {
+            System.out.println(searchedChar + " - большая буква");
+        } else if (Character.isDigit(searchedChar)) {
+            System.out.println(searchedChar + " - цифра");
         } else {
-            System.out.println(sym + " - ни буква и ни цифра");
+            System.out.println(searchedChar + " - ни буква и ни цифра");
         }
 
         System.out.println("\n6. Подсчет начисленных банком %");
         double depositInitial = 321123.59;
-        double rate;
-        System.out.println("Суммка вклада : " + depositInitial);
-        if (depositInitial < 100000) {
-            rate = 0.05;
-        } else if ((depositInitial >= 100000) && (depositInitial < 300000)) {
+        double rate = 0.05;
+        System.out.println("Сумма вклада : " + depositInitial);
+        if ((depositInitial >= 100000) && (depositInitial < 300000)) {
             rate = 0.07;
-        } else {
+        } else if (depositInitial >= 300000) {
             rate = 0.1;
         }
         double interestAmount = depositInitial * rate;
@@ -119,33 +112,29 @@ public class IfElseStatementTheme {
                     "\nИтоговая сумма с % :" + depositFinal);
 
         System.out.println("\n7. Определение оценки по предметам");
-        double history = 0.59;
-        double programming = 0.92;
-        int historyScore;
-        int programmingScore;
-        if (history > 0.91) {
-            historyScore = 5;
-        } else if (history > 0.73) {
-            historyScore = 4;
-        } else if (history > 0.6) {
-            historyScore = 3;
-        } else {
-            historyScore = 2;
+        double historyPercent = 0.59;
+        int historyAssessment = 2;
+        if (historyPercent > 0.91) {
+            historyAssessment = 5;
+        } else if (historyPercent > 0.73) {
+            historyAssessment = 4;
+        } else if (historyPercent > 0.6) {
+            historyAssessment = 3;
         }
-        if (programming > 0.91) {
-            programmingScore = 5;
-        } else if (programming > 0.73) {
-            programmingScore = 4;
-        } else if (programming > 0.6) {
-            programmingScore = 3;
-        } else {
-            programmingScore = 2;
-        }
-        System.out.println("История - " + historyScore);
-        System.out.println("Программирование - " + programmingScore);
-        double averageScore = (historyScore + programmingScore) / 2;
-        double averagePercent = (history + programming) / 2 * 100;
-        System.out.println("Средний балл - " + averageScore);
+        double programmingPercent = 0.92;
+        int programmingAssessment = 5;
+        if (programmingPercent <= 0.6) {
+            programmingAssessment = 2;
+        } else if (programmingPercent < 0.73) {
+            programmingAssessment = 3;
+        } else if (programmingPercent < 0.91) {
+            programmingAssessment = 4;
+        } 
+        System.out.println("История - " + historyAssessment);
+        System.out.println("Программирование - " + programmingAssessment);
+        double averageAssessment = (historyAssessment + programmingAssessment) / 2;
+        double averagePercent = (historyPercent + programmingPercent) / 2 * 100;
+        System.out.println("Средний балл - " + averageAssessment);
         System.out.println("Средний % по предметам - " + averagePercent + "%");
 
         System.out.println("\n8. Расчет годовой прибыли");
@@ -161,7 +150,7 @@ public class IfElseStatementTheme {
 
         System.out.println("\n9. Подсчет начисленных банком % со *");
         var depositInitial1 = new BigDecimal("321123.59");
-        System.out.println("Суммка вклада : " + depositInitial1);
+        System.out.println("Сумма вклада : " + depositInitial1);
         var rate1 = new BigDecimal("0");
         if (depositInitial1.compareTo(new BigDecimal(100000)) < 0) {
             rate1 = new BigDecimal("0.05");

@@ -111,11 +111,11 @@ public class VariableTheme {
                 backslash + underscore + underscore + backslash);
 
         System.out.println("\n8. Манипуляции с сотнями, десятками и единицами числа");
-        int digit = 987;
-        int hundreds = digit / 100;
-        int tens = digit % 100 / 10;
-        int ones = digit % 10;
-        System.out.println("Число " + digit + " содержит:" + 
+        int srcNum = 987;
+        int hundreds = srcNum / 100;
+        int tens = srcNum % 100 / 10;
+        int ones = srcNum % 10;
+        System.out.println("Число " + srcNum + " содержит:" + 
                 "\n сотен - " + hundreds + 
                 "\n десятков - " + tens + 
                 "\n единиц - " + ones + 
@@ -123,10 +123,11 @@ public class VariableTheme {
                 "\nПроизведение разрядов = " + hundreds * tens * ones);
 
         System.out.println("\n9. Перевод секунд в часы, минуты и секунды");
-        int hh = 86399 / 3600;
-        int mm = 86399 % 3600 / 60;
-        int ss = 86399 % 60;
-        System.out.println("Имеется 86399 сек" + 
+        int srcSec = 86399;
+        int hh = srcSec / 3600;
+        int mm = srcSec % 3600 / 60;
+        int ss = srcSec % 60;
+        System.out.println("Имеется " + srcSec + " сек" + 
                 "\nЭто " + hh + ":" + mm + ":" + ss);
 
         System.out.println("\n10. Расчет стоимости товара со скидкой");

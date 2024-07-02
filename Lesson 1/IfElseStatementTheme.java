@@ -171,8 +171,9 @@ public class IfElseStatementTheme {
         var incomeMonth1 = new BigDecimal("13025.233");
         var rentmonth1 = new BigDecimal("5123.018");
         var productionCostMonth1 = new BigDecimal("9001.729");
-        var incomeYear1 = incomeMonth1.subtract(rentmonth1).subtract(
-                productionCostMonth1).multiply(new BigDecimal("12"))
+        var incomeYear1 = incomeMonth1.subtract(rentmonth1)
+                .subtract(productionCostMonth1)
+                .multiply(new BigDecimal("12"))
                 .setScale(2, RoundingMode.HALF_UP);
         if (incomeYear1.compareTo(new BigDecimal(0)) > 0) {
             System.out.printf("Прибыль за год: +" + incomeYear1 + " руб.");

@@ -38,14 +38,14 @@ public class CyclesTheme {
         }
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
-        int numReverse = 1234;
+        int numSrc = 1234;
         int digitReverse;
         int digitSum = 0;
-        while (numReverse % 10 != 0) {
-            digitReverse = numReverse % 10;
+        while (numSrc % 10 != 0) {
+            digitReverse = numSrc % 10;
             System.out.print(digitReverse + " ");
             digitSum += digitReverse;
-            numReverse = numReverse / 10;
+            numSrc = numSrc / 10;
         }
         System.out.println("\nСумма выделенных цифр: " + digitSum);
 
@@ -67,20 +67,22 @@ public class CyclesTheme {
         }
 
         System.out.println("\n5. Проверка количества двоек числа на четность/нечетность");
-        int numTwoCheck = 3242592;
-        int k = numTwoCheck;
-        int count = 0;
-        while (k % 10 != 0) {
-            if (k % 10 == 2) {
-                count++;
+        numSrc = 3242592;
+        int numTwoCheck = numSrc;
+        int countTwo = 0;
+        while (numTwoCheck % 10 != 0) {
+            if (numTwoCheck % 10 == 2) {
+                countTwo++;
             }
-            k = k / 10;
+            numTwoCheck /= 10;
         }
-        if (count / 2 == 0) {
-            System.out.println("В " + numTwoCheck + " четное (" + count + ") количество двоек");
+        System.out.print("В " + numSrc);
+        if (countTwo % 2 == 0) {
+            System.out.print(" четное (");
         } else {
-            System.out.println("В " + numTwoCheck + " нечетное (" + count + ") количество двоек");
+            System.out.print(" нечетное (");
         }
+        System.out.print(countTwo + ") количество двоек");
 
         System.out.println("\n6. Вывод геометрических фигур");
         for (i = 1; i <= 5; i++) {
@@ -91,9 +93,10 @@ public class CyclesTheme {
                 }
             }
         }
+
         System.out.println();
         int line = 5;
-        count = 5;
+        int count = 5;
         while (line != 0) {
             while (count > 0) {
                 System.out.print("#");
@@ -103,26 +106,25 @@ public class CyclesTheme {
             line--;
             count = line;
         }
+
         System.out.println();
         line = 1;
         count = 0;
         do {
-            do {
-                System.out.print("$");
-                count++;
-            } while (line > count);
-            System.out.println();
-            line++;
+            if (line < 4) {
+                do {
+                    System.out.print("$");
+                    count++;
+                } while (count < line);
+            } else {
+                do {
+                    System.out.print("$");
+                    count++;
+                } while (count < 6 - line);
+            }
             count = 0;
-        } while (line < 4);
-        do {
-            do {
-                System.out.print("$");
-                count++;
-            } while (line / count != 2);
             System.out.println();
             line++;
-            count = 1;
         } while (line < 6);
 
         System.out.println("\n7. Вывод ASCII-символов");
@@ -132,51 +134,52 @@ public class CyclesTheme {
                 System.out.printf("%2s%-12d%-13s%-15s%n", "", i, (char) i, Character.getName(i));
             }
         }
-        for (int j = 98; j <= 122; j++) {
-            if (j % 2 == 0) {
-                System.out.printf("%2s%-12d%-13s%-15s%n", "", j, (char) j, Character.getName(j));
+        for (i = 98; i <= 122; i++) {
+            if (i % 2 == 0) {
+                System.out.printf("%2s%-12d%-13s%-15s%n", "", i, (char) i, Character.getName(i));
             }
         }
 
         System.out.println("\n8.Проверка, является ли число палиндромом");
-        int numCheck = 1234321;
-        int palindromeCheck = numCheck;
+        numSrc = 1234321;
+        int palindromeCheck = numSrc;
         String palindromeCheckResult = "";
         do {
             palindromeCheckResult += palindromeCheck % 10;
             palindromeCheck = palindromeCheck / 10;
         } while (palindromeCheck % 10 != 0);
         int palindromeIntCheckResult = Integer.parseInt(palindromeCheckResult);
-        if (numCheck == palindromeIntCheckResult) {
-            System.out.println("Число " + numCheck + " - палиндром");
+        if (numSrc == palindromeIntCheckResult) {
+            System.out.println("Число " + numSrc + " - палиндром");
         } else {
-            System.out.println("Число " + numCheck + " - не палиндром");
+            System.out.println("Число " + numSrc + " - не палиндром");
         }
 
         System.out.println("\n9.Проверка, является ли число счастливым");
-        int numSixDigits = 483843;
-        int numHappyCheck = numSixDigits;
-        int numSumRightSide = 0;
-        int numSumLeftSide = 0;
+        numSrc = 483843;
+        int numHappyCheck = numSrc;
+        int sumRightHalf = 0;
+        int sumLeftHalf = 0;
         String digitsRightSide = "";
         String digitsLeftSide = "";
-        for (i = 1; i <= 3; i++) {
-            numSumRightSide += numHappyCheck % 10;
-            digitsRightSide += numHappyCheck % 10;
+        for (i = 1; i <= 6; i++) {
+            if (i < 4) {
+                sumRightHalf += numHappyCheck % 10;
+                digitsRightSide += numHappyCheck % 10;
+            } else {
+                sumLeftHalf += numHappyCheck % 10;
+                digitsLeftSide += numHappyCheck % 10;
+            }
             numHappyCheck = numHappyCheck / 10;
         }
-        for (int j = 1; j <= 3; j++) {
-            numSumLeftSide += numHappyCheck % 10;
-            digitsLeftSide += numHappyCheck % 10;
-            numHappyCheck = numHappyCheck / 10;
-        }
-        if (numSumLeftSide == numSumRightSide) {
-            System.out.println("Число " + numSixDigits + " - счастливое");
+
+        if (sumLeftHalf == sumRightHalf) {
+            System.out.println("Число " + numSrc + " - счастливое");
         } else {
-            System.out.println("Число " + numSixDigits + " - не счастливое");
+            System.out.println("Число " + numSrc + " - не счастливое");
         }
-        System.out.println("Сумма цифр " + digitsLeftSide + " = " + numSumLeftSide);
-        System.out.println("Сумма цифр " + digitsRightSide + " = " + numSumRightSide);
+        System.out.println("Сумма цифр " + digitsLeftSide + " = " + sumLeftHalf);
+        System.out.println("Сумма цифр " + digitsRightSide + " = " + sumRightHalf);
 
         System.out.println("\n10.Вывод таблицы умножения Пифагора");
         for (i = 1; i <= 9; i++) {

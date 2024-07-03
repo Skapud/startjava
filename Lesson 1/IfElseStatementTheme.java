@@ -113,28 +113,28 @@ public class IfElseStatementTheme {
 
         System.out.println("\n7. Определение оценки по предметам");
         double historyPercent = 0.59;
-        int historyAssessment = 2;
+        int historyGrade = 2;
         if (historyPercent > 0.91) {
-            historyAssessment = 5;
+            historyGrade = 5;
         } else if (historyPercent > 0.73) {
-            historyAssessment = 4;
+            historyGrade = 4;
         } else if (historyPercent > 0.6) {
-            historyAssessment = 3;
+            historyGrade = 3;
         }
         double programmingPercent = 0.92;
-        int programmingAssessment = 5;
+        int programmingGrade = 5;
         if (programmingPercent <= 0.6) {
-            programmingAssessment = 2;
+            programmingGrade = 2;
         } else if (programmingPercent < 0.73) {
-            programmingAssessment = 3;
+            programmingGrade = 3;
         } else if (programmingPercent < 0.91) {
-            programmingAssessment = 4;
+            programmingGrade = 4;
         } 
-        System.out.println("История - " + historyAssessment);
-        System.out.println("Программирование - " + programmingAssessment);
-        double averageAssessment = (historyAssessment + programmingAssessment) / 2;
+        System.out.println("История - " + historyGrade);
+        System.out.println("Программирование - " + programmingGrade);
+        double averageGrade = (historyGrade + programmingGrade) / 2;
         double averagePercent = (historyPercent + programmingPercent) / 2 * 100;
-        System.out.println("Средний балл - " + averageAssessment);
+        System.out.println("Средний балл - " + averageGrade);
         System.out.println("Средний % по предметам - " + averagePercent + "%");
 
         System.out.println("\n8. Расчет годовой прибыли");
@@ -151,14 +151,12 @@ public class IfElseStatementTheme {
         System.out.println("\n9. Подсчет начисленных банком % со *");
         var depositInitial1 = new BigDecimal("321123.59");
         System.out.println("Сумма вклада : " + depositInitial1);
-        var rate1 = new BigDecimal("0");
+        var rate1 = BigDecimal.valueOf(0.1);
         if (depositInitial1.compareTo(new BigDecimal(100000)) < 0) {
-            rate1 = new BigDecimal("0.05");
-        } else if (depositInitial1.compareTo(new BigDecimal(100000)) > 0 && 
+            rate1 = BigDecimal.valueOf(0.05);
+        } else if (depositInitial1.compareTo(new BigDecimal(100000)) >= 0 && 
                 depositInitial1.compareTo(new BigDecimal(300000)) < 0) {
-            rate1 = new BigDecimal("0.07");
-        } else {
-            rate1 = new BigDecimal("0.1");
+            rate1 = BigDecimal.valueOf(0.07);
         }
         var interestAmount1 = depositInitial1.multiply(rate1)
                 .setScale(2, RoundingMode.HALF_UP);
@@ -175,7 +173,7 @@ public class IfElseStatementTheme {
                 .subtract(productionCostMonth1)
                 .multiply(new BigDecimal("12"))
                 .setScale(2, RoundingMode.HALF_UP);
-        if (incomeYear1.compareTo(new BigDecimal(0)) > 0) {
+        if (incomeYear1.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + incomeYear1 + " руб.");
         } else {
             System.out.printf("Прибыль за год: " + incomeYear1 + " руб.");

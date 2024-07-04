@@ -149,13 +149,13 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n9. Подсчет начисленных банком % со *");
-        var depositInitial1 = new BigDecimal("321123.59");
+        var depositInitial1 = BigDecimal.valueOf(321123.59);
         System.out.println("Сумма вклада : " + depositInitial1);
         var rate1 = BigDecimal.valueOf(0.1);
-        if (depositInitial1.compareTo(new BigDecimal(100000)) < 0) {
+        if (depositInitial1.compareTo(BigDecimal.valueOf(100000)) < 0) {
             rate1 = BigDecimal.valueOf(0.05);
-        } else if (depositInitial1.compareTo(new BigDecimal(100000)) >= 0 && 
-                depositInitial1.compareTo(new BigDecimal(300000)) < 0) {
+        } else if (depositInitial1.compareTo(BigDecimal.valueOf(100000)) >= 0 && 
+                depositInitial1.compareTo(BigDecimal.valueOf(300000)) < 0) {
             rate1 = BigDecimal.valueOf(0.07);
         }
         var interestAmount1 = depositInitial1.multiply(rate1)
@@ -166,12 +166,12 @@ public class IfElseStatementTheme {
                     "\nИтоговая сумма с % :" + depositFinal1);
 
         System.out.println("\n10. Расчет годовой прибыли со *");
-        var incomeMonth1 = new BigDecimal("13025.233");
-        var rentmonth1 = new BigDecimal("5123.018");
-        var productionCostMonth1 = new BigDecimal("9001.729");
+        var incomeMonth1 = BigDecimal.valueOf(13025.233);
+        var rentmonth1 = BigDecimal.valueOf(5123.018);
+        var productionCostMonth1 = BigDecimal.valueOf(9001.729);
         var incomeYear1 = incomeMonth1.subtract(rentmonth1)
                 .subtract(productionCostMonth1)
-                .multiply(new BigDecimal("12"))
+                .multiply(BigDecimal.valueOf(12))
                 .setScale(2, RoundingMode.HALF_UP);
         if (incomeYear1.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + incomeYear1 + " руб.");

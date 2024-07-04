@@ -143,13 +143,14 @@ public class CyclesTheme {
         System.out.println("\n8.Проверка, является ли число палиндромом");
         numSrc = 1234321;
         int palindromeCheck = numSrc;
-        String palindromeCheckResult = "";
+        int palindromeCheckResult = 0;
+        int numReverseLast = 0;
         do {
-            palindromeCheckResult += palindromeCheck % 10;
+            numReverseLast = palindromeCheck % 10;
+            palindromeCheckResult = palindromeCheckResult * 10 + numReverseLast;
             palindromeCheck = palindromeCheck / 10;
         } while (palindromeCheck % 10 != 0);
-        int palindromeIntCheckResult = Integer.parseInt(palindromeCheckResult);
-        if (numSrc == palindromeIntCheckResult) {
+        if (numSrc == palindromeCheckResult) {
             System.out.println("Число " + numSrc + " - палиндром");
         } else {
             System.out.println("Число " + numSrc + " - не палиндром");

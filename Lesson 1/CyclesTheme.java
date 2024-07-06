@@ -21,37 +21,38 @@ public class CyclesTheme {
         int num1 = 10;
         int num2 = 5;
         int num3 = -1;
-        int numMin = num3;
-        int numMax = num1;
-        if (num1 < numMin) {
-            numMin = num1;
-        } else if (num2 < numMin) {
-            numMin = num2;
+        int min = num1;
+        int max = num1;
+        if (num2 < min) {
+            min = num2;
         }
-        if (num2 > numMax) {
-            numMax = num2;
-        } else if (num3 > numMax) {
-            numMax = num3;
+        if (num3 < min) {
+            min = num3;
         }
-        for (--numMax; numMax > numMin; numMax--) {
-            System.out.print(numMax + " ");
+        if (num2 > max) {
+            max = num2;
+        }
+        if (num3 > max) {
+            max = num3;
+        }
+        for (--max; max > min; max--) {
+            System.out.print(max + " ");
         }
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int srcNum = 1234;
-        int digitSum = 0;
+        int sumDigit = 0;
         System.out.print("Исходное число " + srcNum + " в обратном порядке : ");
         while (srcNum > 0) {
             int digit = srcNum % 10;
             System.out.print(digit);
-            digitSum += digit;
+            sumDigit += digit;
             srcNum /= 10;
         }
-        System.out.println("\nСумма выделенных цифр: " + digitSum);
+        System.out.println("\nСумма выделенных цифр: " + sumDigit);
 
         System.out.println("\n4. Вывод чисел в несколько строк");
-        int i;
-        for (i = 1; i <= 23; i++) {
+        for (int i = 1; i <= 23; i++) {
             for (int j = 1; j <= 5; j++) {
                 if (i <= 23) {
                     if (i % 2 != 0) {
@@ -60,7 +61,7 @@ public class CyclesTheme {
                         j--;    
                     }    
                 } else {
-                    System.out.print("00 ");
+                    System.out.print(" 0 ");
                 }
                 i++;
             }
@@ -86,7 +87,7 @@ public class CyclesTheme {
         System.out.print(countTwos + ") количество двоек\n");
 
         System.out.println("\n6. Вывод геометрических фигур");
-        for (i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             for (int j = 1; j <= 10; j++) {
                 System.out.print("*");
             }
@@ -127,12 +128,12 @@ public class CyclesTheme {
 
         System.out.println("\n7. Вывод ASCII-символов");
         System.out.println("DECIMAL   " + "CHARACTER   " + "DESCRIPTION");
-        for (i = 33; i <= 47; i++) {
+        for (int i = 33; i <= 47; i++) {
             if (i % 2 != 0) {
                 System.out.printf("%2s%-12d%-13s%-15s%n", "", i, (char) i, Character.getName(i));
             }
         }
-        for (i = 98; i <= 122; i++) {
+        for (int i = 98; i <= 122; i++) {
             if (i % 2 == 0) {
                 System.out.printf("%2s%-12d%-13s%-15s%n", "", i, (char) i, Character.getName(i));
             }
@@ -140,16 +141,15 @@ public class CyclesTheme {
 
         System.out.println("\n8.Проверка, является ли число палиндромом");
         srcNum = 1234321;
-        int palindromeCheck = srcNum;
-        int palindromeCheckResult = 0;
-        int numReverseLastDigit = 0;
+        srcNumCopy = srcNum;
+        int palindrome = 0;
         do {
-            numReverseLastDigit = palindromeCheck % 10;
-            palindromeCheckResult = palindromeCheckResult * 10 + numReverseLastDigit;
-            palindromeCheck /= 10;
-        } while (palindromeCheck % 10 != 0);
+            int numReverseLastDigit = srcNumCopy % 10;
+            palindrome = palindrome * 10 + numReverseLastDigit;
+            srcNumCopy /= 10;
+        } while (srcNumCopy > 0);
         System.out.print("Число " + srcNum);
-        if (srcNum == palindromeCheckResult) {
+        if (srcNum == palindrome) {
             System.out.print(" - палиндром\n");
         } else {
             System.out.print(" - не палиндром\n");
@@ -157,20 +157,21 @@ public class CyclesTheme {
 
         System.out.println("\n9.Проверка, является ли число счастливым");
         srcNum = 483843;
-        int numHappyCheck = srcNum;
+        srcNumCopy = srcNum;
         int sumRightHalf = 0;
         int sumLeftHalf = 0;
-        int digitsRightSide = 0;
-        int digitsLeftSide = 0;
-        for (i = 1; i <= 6; i++) {
+        int rightHalf = 0;
+        int leftHalf = 0;
+        for (int i = 1; i <= 6; i++) {
+            int srcNumLastDigit = srcNumCopy % 10;
             if (i < 4) {
-                sumRightHalf += numHappyCheck % 10;
-                digitsRightSide = digitsRightSide * 10 + numHappyCheck % 10;
+                sumRightHalf += srcNumLastDigit;
+                rightHalf = rightHalf * 10 + srcNumLastDigit;
             } else {
-                sumLeftHalf += numHappyCheck % 10;
-                digitsLeftSide = digitsLeftSide * 10 + numHappyCheck % 10;
+                sumLeftHalf += srcNumLastDigit;
+                leftHalf = leftHalf * 10 + srcNumLastDigit;
             }
-            numHappyCheck = numHappyCheck / 10;
+            srcNumCopy /= 10;
         }
         System.out.print("Число " + srcNum);
         if (sumLeftHalf == sumRightHalf) {
@@ -178,11 +179,11 @@ public class CyclesTheme {
         } else {
             System.out.print(" - не счастливое\n");
         }
-        System.out.println("Сумма цифр " + digitsLeftSide + " = " + sumLeftHalf);
-        System.out.println("Сумма цифр " + digitsRightSide + " = " + sumRightHalf);
+        System.out.println("Сумма цифр " + leftHalf + " = " + sumLeftHalf);
+        System.out.println("Сумма цифр " + rightHalf + " = " + sumRightHalf);
 
         System.out.println("\n10.Вывод таблицы умножения Пифагора");
-        for (i = 1; i <= 9; i++) {
+        for (int i = 1; i <= 9; i++) {
             for (int j = 1; j <= 9; j++) {
                 if ((j == 1) && (i == 1)) {
                     System.out.print("  |");

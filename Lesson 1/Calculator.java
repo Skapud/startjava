@@ -11,7 +11,7 @@ public class Calculator {
         }
         System.out.println("Введите математическую операцию: +, -, *, /, ^, %");
         scanner.nextLine();
-        String signMath = scanner.nextLine();
+        String mathSign = scanner.nextLine();
         System.out.println("Введите второе натуральное число");
         int y = scanner.nextInt();
         if (y < 0) {
@@ -19,29 +19,25 @@ public class Calculator {
             return;
         }
         int result = 0;
-        if (signMath.equals("+")) {
+        if (mathSign.equals("+")) {
             result = x + y;
-        } else if (signMath.equals("-")) {
+        } else if (mathSign.equals("-")) {
             result = x - y;
-        } else if (signMath.equals("*")) {
+        } else if (mathSign.equals("*")) {
             result = x * y;
-        } else if (signMath.equals("/")) {
+        } else if (mathSign.equals("/")) {
             result = x / y;
-        } else if (signMath.equals("^")) {
-            if (y == 0) {
-                result = 1;
-            } else {
-                result = x;
-                for (int i = 2; i <= y; i++) {
-                    result *= x;
-                }
+        } else if (mathSign.equals("^")) {
+            result = 1;
+            for (int i = 1; i <= y; i++) {
+                result *= x;
             }
-        } else if (signMath.equals("%")) {
+        } else if (mathSign.equals("%")) {
             result = x % y;
         } else {
             System.out.println("Ошибка ввода, повторите заново");
             return;
         }
-        System.out.println(x + " " + signMath + " " + y + " = " + result);
+        System.out.println(x + " " + mathSign + " " + y + " = " + result);
     }
 }

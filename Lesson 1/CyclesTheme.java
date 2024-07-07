@@ -41,15 +41,15 @@ public class CyclesTheme {
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int srcNum = 1234;
-        int sumDigit = 0;
+        int sumDigits = 0;
         System.out.print("Исходное число " + srcNum + " в обратном порядке : ");
         while (srcNum > 0) {
             int digit = srcNum % 10;
             System.out.print(digit);
-            sumDigit += digit;
+            sumDigits += digit;
             srcNum /= 10;
         }
-        System.out.println("\nСумма выделенных цифр: " + sumDigit);
+        System.out.println("\nСумма выделенных цифр: " + sumDigits);
 
         System.out.println("\n4. Вывод чисел в несколько строк");
         for (int i = 1; i <= 23; i++) {
@@ -144,8 +144,8 @@ public class CyclesTheme {
         srcNumCopy = srcNum;
         int palindrome = 0;
         do {
-            int numReverseLastDigit = srcNumCopy % 10;
-            palindrome = palindrome * 10 + numReverseLastDigit;
+            int digit = srcNumCopy % 10;
+            palindrome = palindrome * 10 + digit;
             srcNumCopy /= 10;
         } while (srcNumCopy > 0);
         System.out.print("Число " + srcNum);
@@ -160,16 +160,12 @@ public class CyclesTheme {
         srcNumCopy = srcNum;
         int sumRightHalf = 0;
         int sumLeftHalf = 0;
-        int rightHalf = 0;
-        int leftHalf = 0;
         for (int i = 1; i <= 6; i++) {
-            int srcNumLastDigit = srcNumCopy % 10;
+            int digit = srcNumCopy % 10;
             if (i < 4) {
-                sumRightHalf += srcNumLastDigit;
-                rightHalf = rightHalf * 10 + srcNumLastDigit;
+                sumRightHalf += digit;
             } else {
-                sumLeftHalf += srcNumLastDigit;
-                leftHalf = leftHalf * 10 + srcNumLastDigit;
+                sumLeftHalf += digit;
             }
             srcNumCopy /= 10;
         }
@@ -179,6 +175,8 @@ public class CyclesTheme {
         } else {
             System.out.print(" - не счастливое\n");
         }
+        int rightHalf = srcNum % 1000;
+        int leftHalf = srcNum / 1000;
         System.out.println("Сумма цифр " + leftHalf + " = " + sumLeftHalf);
         System.out.println("Сумма цифр " + rightHalf + " = " + sumRightHalf);
 

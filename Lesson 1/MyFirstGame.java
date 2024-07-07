@@ -1,14 +1,14 @@
 public class MyFirstGame {
     public static void main(String[] args) {
-        int numberGuessed = 50;
-        int numberPlayers = 100;
-        while (numberPlayers != numberGuessed) {
-            if (numberGuessed > numberPlayers) {
-                System.out.println(numberPlayers + " меньше того, что загадал компьютер");
-                numberPlayers += 1;
+        int guessedNum = 50;
+        int playerNum = 100;
+        while (playerNum != guessedNum) {
+            if (guessedNum > playerNum) {
+                System.out.println(playerNum + " меньше того, что загадал компьютер");
+                playerNum++;
             } else {
-                System.out.println(numberPlayers + " больше того, что загадал компьютер");
-                numberPlayers -= 1;
+                System.out.println(playerNum + " больше того, что загадал компьютер");
+                playerNum--;
             }
         } 
         System.out.println("Вы победили");

@@ -1,6 +1,6 @@
 import java.util.Random;
-// Игра Камень-Ножницы-Бумага
 
+// Игра Камень-Ножницы-Бумага
 public class RpsGameFormatting {
     public static void main(String[] args) throws InterruptedException {
         String rock = "✊";

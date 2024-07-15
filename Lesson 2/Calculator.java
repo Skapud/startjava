@@ -3,7 +3,6 @@ public class Calculator {
     private String mathSign;
     private double arg2;
     private double result;
-    private boolean active = true;
     private String validInput;
 
     public double getArg1() {

@@ -4,46 +4,7 @@ public class Calculator {
     private double arg2;
     private double result;
     private boolean active = true;
-
-    public void calculate() {
-        switch (this.mathSign) {
-            case "+":
-                this.result = this.arg1 + this.arg2;
-                break;
-            case "-":
-                this.result = this.arg1 - this.arg2;
-                break;
-            case "*":
-                if (this.arg2 == 0) {
-                    this.result = 1;
-                } else {
-                    this.result = this.arg1 * this.arg2;
-                } 
-                break;
-            case "/":
-                if (this.arg2 == 0) {
-                    throw new IllegalArgumentException("Ошибка: деление на ноль запрещено");
-                }
-                this.result = this.arg1 / this.arg2;
-                break;
-            case "^":
-                this.result = 1;
-                for (int i = 1; i <= Math.abs(this.arg2); i++) {
-                    this.result = this.result * this.arg1;
-                }
-                if (this.arg2 < 0) {
-                    this.result = 1 / this.result;
-                }
-                break;
-            case "%":
-                this.result = this.arg1 % this.arg2;
-                break;
-            default:
-                throw new IllegalArgumentException("Ошибка: операция '" + 
-                        this.mathSign + "' не поддерживается." + 
-                        "\nДоступны следующие операции: +, -, *, /, ^, % +"); 
-        }
-    }
+    private String validInput;
 
     public double getArg1() {
         return arg1;
@@ -73,15 +34,51 @@ public class Calculator {
         return result;
     }
 
-    public void setResult(double result) {
-        this.result = result;
+    public String getValidInput() {
+        return validInput;
     }
 
-    public boolean isActive() {
-        return active;
+    public void setValidInput(String validInput) {
+        this.validInput = validInput;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void calculate() {
+        switch (mathSign) {
+            case "+":
+                result = arg1 + arg2;
+                break;
+            case "-":
+                result = arg1 - arg2;
+                break;
+            case "*":
+                if (arg2 == 0) {
+                    result = 1;
+                } else {
+                    result = arg1 * arg2;
+                } 
+                break;
+            case "/":
+                if (arg2 == 0) {
+                    throw new IllegalArgumentException("Ошибка: деление на ноль запрещено");
+                }
+                result = arg1 / arg2;
+                break;
+            case "^":
+                result = 1;
+                for (int i = 1; i <= Math.abs(arg2); i++) {
+                    result *= arg1;
+                }
+                if (arg2 < 0) {
+                    result = 1 / result;
+                }
+                break;
+            case "%":
+                result = arg1 % arg2;
+                break;
+            default:
+                throw new IllegalArgumentException("Ошибка: операция '" + 
+                        mathSign + "' не поддерживается." + 
+                        "\nДоступны следующие операции: +, -, *, /, ^, % +"); 
+        }
     }
 }

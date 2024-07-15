@@ -8,7 +8,8 @@ public class CalculatorTest {
         System.out.println("Введите первое число");
         calculator.setArg1(scanner.nextInt());
         scanner.nextLine();
-        while (calculator.isActive()) {
+        do {
+            calculator.setValidInput("");
             System.out.println("Введите знак операции (+, -, *, /, ^, %):");
             calculator.setMathSign(scanner.nextLine());
             System.out.println("Введите второе число");
@@ -18,24 +19,12 @@ public class CalculatorTest {
                     calculator.getMathSign() + " " + 
                     calculator.getArg2() + " = " + 
                     calculator.getResult());
-            boolean validInput = false;
-            do {
-                switch (scanner.nextLine()) {
-                    case "no":
-                        calculator.setActive(false);
-                        validInput = true;
-                        return;
-                    case "yes":
-                        calculator.setActive(true);
-                        validInput = true;
-                        calculator.setArg1(calculator.getResult());
-                        break;
-                    default:
-                        validInput = false;
-                        break;
-                }
+            calculator.setArg1(calculator.getResult());
+            while (!calculator.getValidInput().equals("yes") && 
+                        !calculator.getValidInput().equals("no")) {
+                calculator.setValidInput(scanner.nextLine());
                 System.out.println("Хотите продолжить вычисления ? [yes/no]:");
-            } while (!validInput);
-        }
+            }
+        } while (calculator.getValidInput().equals("yes"));
     }
 }

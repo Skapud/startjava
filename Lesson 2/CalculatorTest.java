@@ -20,10 +20,11 @@ public class CalculatorTest {
                     calculator.getArg2() + " = " + 
                     calculator.getResult());
             calculator.setArg1(calculator.getResult());
+            scanner.nextLine();
             while (!calculator.getValidInput().equals("yes") && 
                         !calculator.getValidInput().equals("no")) {
-                calculator.setValidInput(scanner.nextLine());
                 System.out.println("Хотите продолжить вычисления ? [yes/no]:");
+                calculator.setValidInput(scanner.nextLine());
             }
         } while (calculator.getValidInput().equals("yes"));
     }

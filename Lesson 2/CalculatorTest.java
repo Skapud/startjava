@@ -4,12 +4,11 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
-
         System.out.println("Введите первое число");
         calculator.setArg1(scanner.nextInt());
         scanner.nextLine();
+        String answer = "";
         do {
-            calculator.setValidInput("");
             System.out.println("Введите знак операции (+, -, *, /, ^, %):");
             calculator.setMathSign(scanner.nextLine());
             System.out.println("Введите второе число");
@@ -21,11 +20,10 @@ public class CalculatorTest {
                     calculator.getResult());
             calculator.setArg1(calculator.getResult());
             scanner.nextLine();
-            while (!calculator.getValidInput().equals("yes") && 
-                        !calculator.getValidInput().equals("no")) {
+            do {
                 System.out.println("Хотите продолжить вычисления ? [yes/no]:");
-                calculator.setValidInput(scanner.nextLine());
-            }
-        } while (calculator.getValidInput().equals("yes"));
+                answer = scanner.nextLine();
+            } while (!answer.equals("yes") && !answer.equals("no"));
+        } while (answer.equals("yes"));
     }
 }

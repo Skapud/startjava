@@ -3,7 +3,6 @@ public class Calculator {
     private String mathSign;
     private double arg2;
     private double result;
-    private String validInput;
 
     public double getArg1() {
         return arg1;
@@ -33,14 +32,6 @@ public class Calculator {
         return result;
     }
 
-    public String getValidInput() {
-        return validInput;
-    }
-
-    public void setValidInput(String validInput) {
-        this.validInput = validInput;
-    }
-
     public void calculate() {
         switch (mathSign) {
             case "+":
@@ -50,33 +41,25 @@ public class Calculator {
                 result = arg1 - arg2;
                 break;
             case "*":
-                if (arg2 == 0) {
-                    result = 1;
-                } else {
-                    result = arg1 * arg2;
-                } 
+                result = arg1 * arg2;
                 break;
             case "/":
+            case "%":
                 if (arg2 == 0) {
                     throw new IllegalArgumentException("Ошибка: деление на ноль запрещено");
                 }
-                result = arg1 / arg2;
+                result = (mathSign == "/") ? arg1 / arg2 : arg1 % arg2;
                 break;
             case "^":
                 result = 1;
                 for (int i = 1; i <= Math.abs(arg2); i++) {
                     result *= arg1;
                 }
-                if (arg2 < 0) {
-                    result = 1 / result;
-                }
-                break;
-            case "%":
-                result = arg1 % arg2;
+                result = (arg2 < 0) ? 1 / result : result;
                 break;
             default:
-                throw new IllegalArgumentException("Ошибка: операция '" + 
-                        mathSign + "' не поддерживается." + 
+                throw new IllegalArgumentException("Ошибка: операция '" + mathSign + 
+                        "' не поддерживается." + 
                         "\nДоступны следующие операции: +, -, *, /, ^, % +"); 
         }
     }

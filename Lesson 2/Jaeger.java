@@ -26,18 +26,6 @@ public class Jaeger {
         this.armor = armor;
     }
 
-    public void displayInfo() {
-        System.out.println("Model Name: " + modelName);
-        System.out.println("Mark: " + mark);
-        System.out.println("Status: " + status);
-        System.out.println("Origin: " + origin);
-        System.out.println("Height: " + height);
-        System.out.println("Weight: " + weight);
-        System.out.println("Speed: " + speed);
-        System.out.println("Strength: " + strength);
-        System.out.println("Armor: " + armor);
-    }
-
     public void setModelName(String modelName) {
         this.modelName = modelName;
     }
@@ -84,5 +72,17 @@ public class Jaeger {
 
     void powerMove() {
         System.out.println("Doing his powermove - " + powerMove);
+    }
+
+    public void displayInfo() {
+        System.out.println("Model Name: " + modelName);
+        System.out.println("Mark: " + mark);
+        System.out.println("Status: " + status);
+        System.out.println("Origin: " + origin);
+        System.out.println("Height: " + height);
+        System.out.println("Weight: " + weight);
+        System.out.println("Speed: " + speed);
+        System.out.println("Strength: " + strength);
+        System.out.println("Armor: " + armor);
     }
 }

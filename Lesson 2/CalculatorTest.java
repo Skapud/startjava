@@ -4,11 +4,11 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
-        System.out.println("Введите первое число");
-        calculator.setArg1(scanner.nextInt());
-        scanner.nextLine();
-        String answer = "";
+        String answer;
         do {
+            System.out.println("Введите первое число");
+            calculator.setArg1(scanner.nextInt());
+            scanner.nextLine();
             System.out.println("Введите знак операции (+, -, *, /, ^, %):");
             calculator.setMathSign(scanner.nextLine());
             System.out.println("Введите второе число");
@@ -18,7 +18,6 @@ public class CalculatorTest {
                     calculator.getMathSign() + " " + 
                     calculator.getArg2() + " = " + 
                     calculator.getResult());
-            calculator.setArg1(calculator.getResult());
             scanner.nextLine();
             do {
                 System.out.println("Хотите продолжить вычисления ? [yes/no]:");

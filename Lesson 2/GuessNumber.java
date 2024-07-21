@@ -6,6 +6,7 @@ public class GuessNumber {
     private int guessedNum;
     private Player player1;
     private Player player2;
+    private boolean gameRunning;
     Scanner scanner = new Scanner(System.in);
 
     public GuessNumber(Player player1, Player player2) {
@@ -14,33 +15,38 @@ public class GuessNumber {
     }
 
     public void start() {
+        gameRunning = true;
         guessedNum = min + (int) (Math.random() * (max - min + 1));
         Player currentPlayer = player1;
         do {
             System.out.println("Игрок " + currentPlayer.getName() + 
                     ", введите число от 1 до 100:");
             enterNum(currentPlayer);
-            if (currentPlayer.getNum() == guessedNum) {
-                System.out.println("Победил " + currentPlayer.getName());
-                break;
-            }
-            System.out.println(currentPlayer.getNum() + " " + 
-                        (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
-                        " того, что загадал компьютер");
+            checkNum(currentPlayer);
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
-        } while (true);
+        } while (gameRunning);
     }
 
     public void enterNum(Player currentPlayer) {
         do {
             int enteredNum = scanner.nextInt();
             currentPlayer.setNum(enteredNum);
-            if (currentPlayer.getNum() < min || currentPlayer.getNum() > max) {
-                System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
-                scanner.nextLine();
-            } else {
+            if (currentPlayer.getNum() >= min && currentPlayer.getNum() <= max) {
                 break;
             }
+            System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
+            scanner.nextLine();
         } while (true);
+    }
+
+    public void checkNum(Player currentPlayer) {
+        if (currentPlayer.getNum() == guessedNum) {
+            System.out.println("Победил " + currentPlayer.getName());
+            gameRunning = false;
+        } else {
+            System.out.println(currentPlayer.getNum() + " " + 
+                    (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
+                    " того, что загадал компьютер");
+        }
     }
 }

@@ -23,9 +23,8 @@ public class GuessNumber {
             if (currentPlayer.getNum() == guessedNum) {
                 System.out.println("Победил " + currentPlayer.getName());
                 break;
-            } else {
-                currentPlayer = (currentPlayer == player1) ? player2 : player1;
             }
+            currentPlayer = (currentPlayer == player1) ? player2 : player1;
         } while (true);
     }
 
@@ -33,9 +32,7 @@ public class GuessNumber {
         do {
             int enteredNum = scanner.nextInt();
             currentPlayer.setNum(enteredNum);
-            if (currentPlayer.getNum() == guessedNum) { 
-                break;
-            } else if (currentPlayer.getNum() < min || currentPlayer.getNum() > max) {
+            if (currentPlayer.getNum() < min || currentPlayer.getNum() > max) {
                 System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
                 scanner.nextLine();
             } else {

@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
 public class GuessNumber {
-    private int arg1 = 1;
-    private int arg2 = 100;
+    private int min = 1;
+    private int max = 100;
     private int guessedNum;
-    private int typedNum;
     private Player player1;
     private Player player2;
     Scanner scanner = new Scanner(System.in);
@@ -14,15 +13,15 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-    public void playGame() {
-        guessedNum = arg1 + (int) (Math.random() * (arg2 - arg1 + 1));
+    public void start() {
+        guessedNum = min + (int) (Math.random() * (max - min + 1));
         Player currentPlayer = player1;
         do {
-            System.out.println("Игрок " + currentPlayer.getPlayerName() + 
+            System.out.println("Игрок " + currentPlayer.getName() + 
                     ", введите число от 1 до 100:");
-            checkNum(currentPlayer);
-            if (typedNum == guessedNum) {
-                System.out.println("Победил " + currentPlayer.getPlayerName());
+            enterNum(currentPlayer);
+            if (currentPlayer.getNum() == guessedNum) {
+                System.out.println("Победил " + currentPlayer.getName());
                 break;
             } else {
                 currentPlayer = (currentPlayer == player1) ? player2 : player1;
@@ -30,14 +29,21 @@ public class GuessNumber {
         } while (true);
     }
 
-    public void checkNum(Player currentPlayer) {
+    public void enterNum(Player currentPlayer) {
         do {
-            typedNum = scanner.nextInt();
-            currentPlayer.setPlayerNum(typedNum);
-            if (typedNum < arg1 || typedNum > arg2) {
+            int enteredNum = scanner.nextInt();
+            currentPlayer.setNum(enteredNum);
+            if (currentPlayer.getNum() == guessedNum) { 
+                break;
+            } else if (currentPlayer.getNum() < min || currentPlayer.getNum() > max) {
                 System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
                 scanner.nextLine();
+            } else {
+                System.out.println(currentPlayer.getNum() + " " + 
+                        (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
+                        " того, что загадал компьютер");
+                break;
             }
-        } while (typedNum < arg1 || typedNum > arg2);
+        } while (true);
     }
 }

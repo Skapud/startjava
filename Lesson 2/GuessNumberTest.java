@@ -7,12 +7,12 @@ public class GuessNumberTest {
         Player player1 = new Player(scanner.nextLine());
         System.out.print("Введите имя игрока 2: ");
         Player player2 = new Player(scanner.nextLine());
-        GuessNumber guessNumber = new GuessNumber(player1, player2);
-        System.out.println("Игрок 1: " + player1.getPlayerName() + 
-                " против Игрока 2: " + player2.getPlayerName());
+        GuessNumber game = new GuessNumber(player1, player2);
+        System.out.println("Игрок 1: " + player1.getName() + 
+                " против Игрока 2: " + player2.getName());
         String answer;
         do {
-            guessNumber.playGame();
+            game.start();
             do { 
                 System.out.println("Хотите продолжить игру? [yes/no]:");
                 answer = scanner.nextLine();

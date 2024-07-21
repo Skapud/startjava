@@ -24,6 +24,9 @@ public class GuessNumber {
                 System.out.println("Победил " + currentPlayer.getName());
                 break;
             }
+            System.out.println(currentPlayer.getNum() + " " + 
+                        (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
+                        " того, что загадал компьютер");
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
         } while (true);
     }
@@ -36,9 +39,6 @@ public class GuessNumber {
                 System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
                 scanner.nextLine();
             } else {
-                System.out.println(currentPlayer.getNum() + " " + 
-                        (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
-                        " того, что загадал компьютер");
                 break;
             }
         } while (true);

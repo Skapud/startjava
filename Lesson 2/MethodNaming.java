@@ -1,4 +1,4 @@
-public class Water {
+public class MethodNaming {
     public void searchLongestWord() {
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
         System.out.println(methodName + 

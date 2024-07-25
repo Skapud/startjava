@@ -30,8 +30,8 @@ public class GuessNumber {
     public void enterNum(Player currentPlayer) {
         do {
             int enteredNum = scanner.nextInt();
-            currentPlayer.setNum(enteredNum);
-            if (currentPlayer.getNum() >= min && currentPlayer.getNum() <= max) {
+            if (enteredNum >= min && enteredNum <= max) {
+                currentPlayer.setNum(enteredNum);
                 break;
             }
             System.out.println("Введено число в незаданном диапазоне, повторите ввод:");
@@ -43,11 +43,10 @@ public class GuessNumber {
         if (currentPlayer.getNum() == guessedNum) {
             System.out.println("Победил " + currentPlayer.getName());
             return true;
-        } else {
-            System.out.println(currentPlayer.getNum() + " " + 
-                    (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
-                    " того, что загадал компьютер");
-            return false;
         }
+        System.out.println(currentPlayer.getNum() + " " + 
+                (currentPlayer.getNum() > guessedNum ? "больше" : "меньше") + 
+                " того, что загадал компьютер");
+        return false;
     }
 }

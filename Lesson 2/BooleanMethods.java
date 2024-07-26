@@ -1,7 +1,6 @@
-public class BooleanMethodNaming {
+public class BooleanMethods {
 
     public boolean shouldContinue() {
-        MethodUtils.methodName();
         System.out.println(MethodUtils.methodName() + 
                 "() -> программа выполняется далее или завершается?");
         return false;

@@ -1,14 +1,13 @@
-public class MethodCalling {
+public class MainMethodsCalling {
     public static void main(String[] args) {
-        MethodNaming first = new MethodNaming();
-        BooleanMethodNaming second = new BooleanMethodNaming();
-        MethodCalling caller = new MethodCalling();
-        caller.startFirst(first);
+        MainMethodsCalling caller = new MainMethodsCalling();
+        caller.startNotBoolean();
         System.out.println();
-        caller.startSecond(second);
+        caller.startBoolean();
     }
 
-    public void startFirst(MethodNaming first) {
+    public void startNotBoolean() {
+        NotBooleanMethods first = new NotBooleanMethods();
         first.chooseMenu();
         first.calculateAverage();
         first.calculateUniqueWords();
@@ -24,7 +23,8 @@ public class MethodCalling {
         first.findBook();
     }
 
-    public void startSecond(BooleanMethodNaming second) {
+    public void startBoolean() {
+        BooleanMethods second = new BooleanMethods();
         System.out.println(second.shouldContinue());
         System.out.println(second.isFileDeleted());
         System.out.println(second.hasUniqueNum());

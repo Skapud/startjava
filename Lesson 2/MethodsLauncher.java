@@ -16,10 +16,10 @@ public class MethodsLauncher {
         nonBm.restoreBackup();
         nonBm.pauseDownload();
         nonBm.resetSettings();
-        nonBm.writeFilesUSB();
+        nonBm.writeFilesUsb();
         nonBm.convertCelsiusToFahrenheit();
         nonBm.inputMathExpression();
-        nonBm.findWinnerNFS();
+        nonBm.findWinnerNfs();
         nonBm.findBookAuthorsName();
     }
 

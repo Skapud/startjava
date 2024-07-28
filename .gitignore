@@ -1,5 +1,5 @@
 .DS_Store
 *.class
 out/
-src/lesson_2_3/calculator/options
-src/lesson_2_3/calculator/optionsj
+src/com/startjava/lesson_2_3/calculator/options
+src/com/startjava/lesson_2_3/calculator/optionsj

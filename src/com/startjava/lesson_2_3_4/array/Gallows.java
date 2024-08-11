@@ -89,7 +89,7 @@ public class Gallows {
     }
 
     public void processInput() {
-        boolean isDublicate = false;
+        boolean isDublicate;
         do {
             System.out.println("Введите букву:");
             input = scanner.nextLine();
@@ -105,6 +105,7 @@ public class Gallows {
                 System.out.println("Ошибка: введённый символ не является кириллическим");
                 continue;
             }
+            isDublicate = false;
             for (int i = 0; i < allLetters.length; i++) {
                 if (allLetters[i] != null && allLetters[i].equals(input.toUpperCase())) {
                     isDublicate = true;

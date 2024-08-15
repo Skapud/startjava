@@ -3,26 +3,25 @@ package com.startjava.lesson_2_3_4.array;
 public class PyramidDrawning {
     public static void main(String[] args) {
         PyramidDrawning pr = new PyramidDrawning();
-
         pr.sortChars('0', '9', true);
         pr.sortChars('/', '!', false);
         pr.sortChars('A', 'J', false);
     }
 
-    public void sortChars(char minBorder, char maxBorder, boolean direction) {
-        int size = Math.abs(minBorder - maxBorder) + 1;
-        char[] symbols = new char[size];
+    private void sortChars(char minBorder, char maxBorder, boolean direction) {
+        int segmentLen = Math.abs(minBorder - maxBorder) + 1;
+        char[] symbols = new char[segmentLen];
         if (minBorder > maxBorder) {
-            char temp = minBorder;
+            char swap = minBorder;
             minBorder = maxBorder;
-            maxBorder = temp;
+            maxBorder = swap;
         }
         if (direction) {
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < segmentLen; i++) {
                 symbols[i] = (char) (minBorder + i);
             }
         } else {
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < segmentLen; i++) {
                 symbols[i] = (char) (maxBorder - i);
             }
         }

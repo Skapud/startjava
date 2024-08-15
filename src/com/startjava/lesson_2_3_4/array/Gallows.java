@@ -56,8 +56,8 @@ public class Gallows {
 
     String[] allLetters = new String[33];
     private int allLettersCount = 0;
-    String[] incorrectLetters = new String[33];
-    private int incorrectLettersCount = 0;
+    String[] wrongLetters = new String[33];
+    private int wrongLettersCount = 0;
     Scanner scanner = new Scanner(System.in);
 
     private String chosenWord;
@@ -78,7 +78,7 @@ public class Gallows {
         gallows.printWinnerLoser();
     }
 
-    public void initGame() {
+    private void initGame() {
         String[] listNames = {"ВЕЛОСИПЕД", "АТТРАКЦИОН", "АСФИКСИЯ", "ЦЕНТНЕР", "ФРАКЦИЯ"};
         chosenWord = listNames[(int) (Math.random() * listNames.length)];
         chosenWordLetters = chosenWord.toCharArray();
@@ -88,7 +88,7 @@ public class Gallows {
         }
     }
 
-    public void processInput() {
+    private void processInput() {
         boolean isDublicate;
         do {
             System.out.println("Введите букву:");
@@ -121,7 +121,7 @@ public class Gallows {
         } while (true);
     }
 
-    public void checkMatch() {
+    private void checkMatch() {
         boolean isGuessed = false;
         for (int i = 0; i < chosenWordLetters.length; i++) {
             if (chosenWordLetters[i] == input.toUpperCase().charAt(0)) {
@@ -133,8 +133,8 @@ public class Gallows {
             remainAttempts++;
         }
         if (!isGuessed) {
-            incorrectLetters[incorrectLettersCount] = input.toUpperCase();
-            incorrectLettersCount++;
+            wrongLetters[wrongLettersCount] = input.toUpperCase();
+            wrongLettersCount++;
             remainAttempts--;
         }
         isEqual = Arrays.equals(chosenWordLetters, currentMask);
@@ -147,7 +147,7 @@ public class Gallows {
             System.out.print(sym + " ");
         }
         System.out.print("\nСписок ошибочных букв: ");
-        for (String sym : incorrectLetters) {
+        for (String sym : wrongLetters) {
             if (sym != null) {
                 System.out.printf("%s ", sym);
             }

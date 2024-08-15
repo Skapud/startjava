@@ -50,9 +50,9 @@ public class Factorial {
         return factorialResult;
     }
 
-    private void printResult(int[] originalArray, long[] factorials) {
+    private void printResult(int[] original, long[] factorials) {
         int validIndex = 0;
-        for (int num : originalArray) {
+        for (int num : original) {
             if (num >= 0) {
                 long factorial = factorials[validIndex];
                 System.out.print(num + "! = ");

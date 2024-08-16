@@ -1,14 +1,14 @@
 package com.startjava.lesson_2_3_4.array;
 
-public class PyramidDrawning {
+public class TriangleDrawing {
     public static void main(String[] args) {
-        PyramidDrawning pr = new PyramidDrawning();
-        pr.sortChars('0', '9', true);
-        pr.sortChars('/', '!', false);
-        pr.sortChars('A', 'J', false);
+        TriangleDrawing pr = new TriangleDrawing();
+        pr.drawChars('0', '9', true);
+        pr.drawChars('/', '!', false);
+        pr.drawChars('A', 'J', false);
     }
 
-    private void sortChars(char minBorder, char maxBorder, boolean direction) {
+    private void drawChars(char minBorder, char maxBorder, boolean direction) {
         int segmentLen = Math.abs(minBorder - maxBorder) + 1;
         char[] symbols = new char[segmentLen];
         if (minBorder > maxBorder) {
@@ -16,14 +16,8 @@ public class PyramidDrawning {
             minBorder = maxBorder;
             maxBorder = swap;
         }
-        if (direction) {
-            for (int i = 0; i < segmentLen; i++) {
-                symbols[i] = (char) (minBorder + i);
-            }
-        } else {
-            for (int i = 0; i < segmentLen; i++) {
-                symbols[i] = (char) (maxBorder - i);
-            }
+        for (int i = 0; i < segmentLen; i++) {
+            symbols[i] = (char) (direction ? minBorder + i : maxBorder - i);
         }
         int symCount = 1;
         int spaceCount = maxBorder - minBorder;

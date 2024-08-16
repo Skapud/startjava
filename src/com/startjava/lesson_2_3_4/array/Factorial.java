@@ -13,9 +13,13 @@ public class Factorial {
     }
 
     private void calc(int... sequence) {
-        if (sequence == null || sequence.length == 0) {
-            System.out.printf("Ошибка: %s не является допустимым значением\n",
-                    (sequence == null) ? "null" : "0");
+        if (sequence == null) {
+            System.out.println("Ошибка: null не является допустимым значением");
+            return;
+        }
+
+        if (sequence.length == 0) {
+            System.out.println("Ошибка: длина массива равна нулю");
             return;
         }
         int validCount = countValidValues(sequence);
@@ -33,9 +37,7 @@ public class Factorial {
     private int countValidValues(int[] sequence) {
         int count = 0;
         for (int num : sequence) {
-            if (num >= 0) {
-                count++;
-            }
+            if (num >= 0) count++;
         }
         return count;
     }

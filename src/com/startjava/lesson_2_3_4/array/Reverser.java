@@ -4,42 +4,25 @@ import java.util.Arrays;
 
 public class Reverser {
     public static void main(String[] args) {
-        int[] zeroNum = {};
-        processArray(zeroNum);
+        reverse(new int[] {});
 
-        int[] empty = null;
-        processArray(empty);
+        reverse(null);
 
-        int[] fourNums = {6, 8, 9, 1};
-        processArray(fourNums);
+        reverse(new int[] {6, 8, 9, 1});
 
-        int[] sevenNums = {13, 8, 5, 3, 2, 1, 1};
-        processArray(sevenNums);
+        reverse(new int[] {13, 8, 5, 3, 2, 1, 1});
     }
 
-    private static void processArray(int[] toReverse) {
+    private static void reverse(int[] toReverse) {
         if (!isValidArray(toReverse)) {
             System.out.println("Преобразования невозможны");
             return;
         }
         System.out.print("   До реверса: ");
-        printArray(toReverse);
-        runReverse(toReverse);
+        print(toReverse);
+        reverseArray(toReverse);
         System.out.print("После реверса: ");
-        printArray(toReverse);
-    }
-
-    private static void printArray(int[] toReverse) {
-        System.out.println(Arrays.toString(toReverse));
-    }
-
-    private static void runReverse(int[] toReverse) {
-        int len = toReverse.length - 1;
-        for (int i = 0; i < len / 2; i++) {
-            int swap = toReverse[i];
-            toReverse[i] = toReverse[len - i];
-            toReverse[len - i] = swap;
-        }
+        print(toReverse);
     }
 
     public static boolean isValidArray(int[] toReverse) {
@@ -52,5 +35,19 @@ public class Reverser {
             return false;
         }
         return true;
+    }
+
+    private static void print(int[] array) {
+        System.out.println(Arrays.toString(array));
+    }
+
+    private static void reverseArray(int[] toReverse) {
+        int len = toReverse.length;
+        for (int i = 0; i < len / 2; i++) {
+            len--;
+            int swap = toReverse[i];
+            toReverse[i] = toReverse[len - i];
+            toReverse[len - i] = swap;
+        }
     }
 }

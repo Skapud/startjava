@@ -3,30 +3,42 @@ package com.startjava.lesson_2_3_4.array;
 public class ThresholdEraser {
     public static void main(String[] args) {
         ThresholdEraser te = new ThresholdEraser();
-        te.processArray(-1);
-        te.processArray(8);
-        te.processArray(0);
-        te.processArray(14);
+        te.thresholdErase(-1);
+        te.thresholdErase(8);
+        te.thresholdErase(0);
+        te.thresholdErase(14);
     }
 
-    private void processArray(int index) {
+    private void thresholdErase(int index) {
         float[] randomFloats = new float[15];
-        initArray(randomFloats);
-        System.out.print("Исходный массив:");
-        printArray(randomFloats, 8);
-        formatArray(randomFloats, index);
-        System.out.print("Измененный массив:");
-        printArray(randomFloats, 7);
+        init(randomFloats);
+        System.out.print("Исходный массив: ");
+        print(randomFloats);
+        deleteElements(randomFloats, index);
+        System.out.print("Измененный массив: ");
+        print(randomFloats);
         System.out.println();
     }
 
-    private void initArray(float[] randomFloats) {
+    private void init(float[] randomFloats) {
         for (int i = 0; i < randomFloats.length; i++) {
             randomFloats[i] = (float) Math.random();
         }
     }
 
-    private void formatArray(float[] randomFloats, int index) {
+    private void print(float[] floats) {
+        int len = floats.length;
+        int linesPrint = (len + 1) / 2;
+        for (int i = 0; i < len; i++) {
+            if (linesPrint == i) {
+                System.out.println();
+            }
+            System.out.printf((i + 1 == len) ? "%.3f. " : "%.3f, ", floats[i]);
+        }
+        System.out.println();
+    }
+
+    private void deleteElements(float[] randomFloats, int index) {
         int len = randomFloats.length;
         if (index < 0 || index >= len) {
             System.out.println("Ошибка - индекс массива " + ((index < 0) ?
@@ -42,16 +54,5 @@ public class ThresholdEraser {
             }
         }
         System.out.println("Количество обнуленных ячеек: " + count);
-    }
-
-    private void printArray(float[] randomFloats, int linesPrint) {
-        int len = randomFloats.length;
-        for (int i = 0; i < len; i++) {
-            if (i % linesPrint == 0) {
-                System.out.println();
-            }
-            System.out.printf((i + 1 == len) ? "%.3f. " : "%.3f, ", randomFloats[i]);
-        }
-        System.out.println();
     }
 }

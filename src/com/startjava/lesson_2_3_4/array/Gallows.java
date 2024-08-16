@@ -63,7 +63,7 @@ public class Gallows {
     private String chosenWord;
     private String input;
     private int remainAttempts = 6;
-    private char[] chosenWordLetters;
+    private char[] chosenWordChars;
     private char[] currentMask;
     private boolean isEqual;
 
@@ -71,9 +71,9 @@ public class Gallows {
         Gallows gallows = new Gallows();
         gallows.initGame();
         do {
-            gallows.processInput();
+            gallows.inputSym();
             gallows.checkMatch();
-            gallows.printStatus();
+            gallows.printGameStatus();
         } while (!gallows.isEqual && gallows.remainAttempts != 0);
         gallows.printWinnerLoser();
     }
@@ -81,14 +81,14 @@ public class Gallows {
     private void initGame() {
         String[] listNames = {"ВЕЛОСИПЕД", "АТТРАКЦИОН", "АСФИКСИЯ", "ЦЕНТНЕР", "ФРАКЦИЯ"};
         chosenWord = listNames[(int) (Math.random() * listNames.length)];
-        chosenWordLetters = chosenWord.toCharArray();
+        chosenWordChars = chosenWord.toCharArray();
         currentMask = new char[chosenWord.length()];
         for (int i = 0; i < currentMask.length; i++) {
             currentMask[i] = '_';
         }
     }
 
-    private void processInput() {
+    private void inputSym() {
         boolean isDublicate;
         do {
             System.out.println("Введите букву:");
@@ -123,8 +123,8 @@ public class Gallows {
 
     private void checkMatch() {
         boolean isGuessed = false;
-        for (int i = 0; i < chosenWordLetters.length; i++) {
-            if (chosenWordLetters[i] == input.toUpperCase().charAt(0)) {
+        for (int i = 0; i < chosenWordChars.length; i++) {
+            if (chosenWordChars[i] == input.toUpperCase().charAt(0)) {
                 currentMask[i] = input.toUpperCase().charAt(0);
                 isGuessed = true;
             }
@@ -137,10 +137,10 @@ public class Gallows {
             wrongLettersCount++;
             remainAttempts--;
         }
-        isEqual = Arrays.equals(chosenWordLetters, currentMask);
+        isEqual = Arrays.equals(chosenWordChars, currentMask);
     }
 
-    public void printStatus() {
+    private void printGameStatus() {
         System.out.println(HANGED_MAN[remainAttempts]);
         System.out.println("Текущее количество попыток: " + remainAttempts);
         for (char sym : currentMask) {
@@ -155,12 +155,12 @@ public class Gallows {
         System.out.println();
     }
 
-    public void printWinnerLoser() {
+    private void printWinnerLoser() {
         System.out.println((isEqual) ? "Вы победили" : "Вы проиграли");
         System.out.println("Загаданное слово : " + chosenWord);
     }
 
-    public static boolean isCyrillic(String ch) {
+    private static boolean isCyrillic(String ch) {
         return String.valueOf(ch).matches("\\p{IsCyrillic}");
     }
 }

@@ -1,20 +1,22 @@
 package com.startjava.lesson_2_3_4.array;
 
-public class UniqueDigitsGenerator {
+public class UniqueDigitsFiller {
     public static void main(String[] args) {
-        UniqueDigitsGenerator udg = new UniqueDigitsGenerator();
-        udg.generateDigits(-10, 20, 23);
-        udg.generateDigits(-30, 10, 10);
-        udg.generateDigits(34, -34, 0);
-        udg.generateDigits(-1, 2, -3);
+        UniqueDigitsFiller udg = new UniqueDigitsFiller();
+        udg.fillDigits(-10, 20, 23);
+        udg.fillDigits(-30, 10, 10);
+        udg.fillDigits(34, -34, 0);
+        udg.fillDigits(-1, 2, -3);
     }
 
-    private void generateDigits(int border1, int border2, int stringCount) {
+    private void fillDigits(int border1, int border2, int stringCount) {
         int[] uniqueNums = randomFill(border1, border2, stringCount);
         if (uniqueNums != null) {
-            printNotSorted(uniqueNums);
+            System.out.println("Изначальный массив: ");
+            print(uniqueNums, stringCount);
             initBubbleFilter(uniqueNums);
-            printSorted(uniqueNums, stringCount);
+            System.out.println("Отсортированный массив: ");
+            print(uniqueNums, stringCount);
         }
     }
 
@@ -53,14 +55,6 @@ public class UniqueDigitsGenerator {
         return uniqueNums;
     }
 
-    private void printNotSorted(int[] uniqueNums) {
-        System.out.println("Изначальный массив: ");
-        for (int num : uniqueNums) {
-            System.out.printf("%s ", num);
-        }
-        System.out.println();
-    }
-
     private void initBubbleFilter(int[] uniqueNums) {
         int len = uniqueNums.length;
         for (int i = 0; i < len - 1; i++) {
@@ -74,11 +68,10 @@ public class UniqueDigitsGenerator {
         }
     }
 
-    private void printSorted(int[] uniqueNums, int stringCount) {
-        System.out.println("Отсортированный массив: ");
+    private void print(int[] uniqueNums, int stringCount) {
         int count = 0;
         for (int num : uniqueNums) {
-            System.out.printf("%s ", num);
+            System.out.printf("%3s ", num);
             count++;
             if (count == stringCount) {
                 System.out.println();

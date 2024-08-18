@@ -69,16 +69,16 @@ public class Gallows {
 
     public static void main(String[] args) {
         Gallows gallows = new Gallows();
-        gallows.initGame();
+        gallows.init();
         do {
             gallows.inputSym();
             gallows.checkMatch();
-            gallows.printGameStatus();
+            gallows.printStatus();
         } while (!gallows.isEqual && gallows.remainAttempts != 0);
         gallows.printWinnerLoser();
     }
 
-    private void initGame() {
+    private void init() {
         String[] listNames = {"ВЕЛОСИПЕД", "АТТРАКЦИОН", "АСФИКСИЯ", "ЦЕНТНЕР", "ФРАКЦИЯ"};
         chosenWord = listNames[(int) (Math.random() * listNames.length)];
         chosenWordChars = chosenWord.toCharArray();
@@ -121,6 +121,10 @@ public class Gallows {
         } while (true);
     }
 
+    private boolean isCyrillic(String ch) {
+        return String.valueOf(ch).matches("\\p{IsCyrillic}");
+    }
+
     private void checkMatch() {
         boolean isGuessed = false;
         for (int i = 0; i < chosenWordChars.length; i++) {
@@ -140,7 +144,7 @@ public class Gallows {
         isEqual = Arrays.equals(chosenWordChars, currentMask);
     }
 
-    private void printGameStatus() {
+    private void printStatus() {
         System.out.println(HANGED_MAN[remainAttempts]);
         System.out.println("Текущее количество попыток: " + remainAttempts);
         for (char sym : currentMask) {
@@ -158,9 +162,5 @@ public class Gallows {
     private void printWinnerLoser() {
         System.out.println((isEqual) ? "Вы победили" : "Вы проиграли");
         System.out.println("Загаданное слово : " + chosenWord);
-    }
-
-    private static boolean isCyrillic(String ch) {
-        return String.valueOf(ch).matches("\\p{IsCyrillic}");
     }
 }

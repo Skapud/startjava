@@ -1,7 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
 public class Typewriter {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Typewriter tw = new Typewriter();
         tw.extractWords("Java - это C++, из которого убрали все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling");
@@ -11,45 +11,71 @@ public class Typewriter {
         tw.extractWords("");
     }
 
-    private void extractWords(String message) {
-        String[] split = message.split(" ");
-        findMinMax(split);
-        String[] minMax = findMinMax(split);
-        rewriteInterval(split, minMax);
+    private void extractWords(String message) throws InterruptedException {
+        if (message.equals("null") || message.isBlank()) {
+            System.out.printf("Ошибка ввода: " + ((message.equals("null")) ? "null\n" : "пустая строка\n"));
+            return;
+        }
+        String[] split = message.split("(?=[\\s,.!?])|(?<=[\\s,.!?])");
+        int[] indexSegment = findUppercaseSegment(split);
+        String[] uppercaseSplit = rewrite(split, indexSegment);
+        printUppercase(uppercaseSplit, indexSegment);
+        printTypeWriter(uppercaseSplit);
     }
 
-    private String[] findMinMax(String[] split) {
+    private int[] findUppercaseSegment(String[] split) {
         int len = split.length;
-        String max = split[0];
-        String min = split[0];
+        int min = 0;
+        int max = 0;
         for (int i = 1; i < len; i++) {
-            if (split[i].length() < min.length()) {
-                min = split[i];
-            }
-            if (split[i].length() > max.length()) {
-                max = split[i];
+            if (split[i].matches("[\\p{L}]+")) {
+                if (split[i].length() < split[min].length()) {
+                    min = i;
+                }
+                if (split[i].length() > split[max].length()) {
+                    max = i;
+                }
             }
         }
-        System.out.println(min + " " + max);
-        return new String[] {min, max};
+        if (min > max) {
+            int swap = min;
+            min = max;
+            max = swap;
+        }
+        return new int[] {min, max};
     }
 
-    private void rewriteInterval(String[] split, String[] minMax) {
+    private String[] rewrite(String[] split, int[] indexSegment) {
         int len = split.length;
-        int count = 0;
+        String[] uppercaseSplit = new String[len];
         for (int i = 0; i < len; i++) {
-            if (split[i].equals(minMax[0]) || split[i].equals(minMax[1])) {
-                count++;
-            }
-            if (count > 0) {
-                split[i] = split[i].toUpperCase();
-            }
-            if (count == 2) {
-                break;
+            if (i >= indexSegment[0] && i <= indexSegment[1]) {
+                uppercaseSplit[i] = split[i].toUpperCase();
+            } else {
+                uppercaseSplit[i] = split[i];
             }
         }
-        for (String text : split) {
-            System.out.print(text + " ");
+        return uppercaseSplit;
+    }
+
+    private void printUppercase(String[] uppercaseSplit, int[] indexSegment) {
+        System.out.println("Все слова между найденными (включительно): ");
+        for (int i = indexSegment[0]; i <= indexSegment[1]; i++) {
+            if (uppercaseSplit[i].matches("[\\p{L}]+")) {
+                System.out.printf("%s ", uppercaseSplit[i]);
+            }
         }
+        System.out.println();
+    }
+
+    private void printTypeWriter(String[] uppercaseSplit) throws InterruptedException {
+        System.out.println("Текст с эффектом пишущей машинки (побуквенно): ");
+        for (String text : uppercaseSplit) {
+            for (char c : text.toCharArray()) {
+                System.out.print(c);
+                Thread.sleep(100);
+            }
+        }
+        System.out.println();
     }
 }

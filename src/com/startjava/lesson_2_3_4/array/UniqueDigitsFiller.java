@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
+import java.util.Random;
+
 public class UniqueDigitsFiller {
     public static void main(String[] args) {
         UniqueDigitsFiller udg = new UniqueDigitsFiller();
@@ -9,24 +11,23 @@ public class UniqueDigitsFiller {
         udg.fillDigits(-1, 2, -3);
     }
 
-    private void fillDigits(int border1, int border2, int stringCount) {
-        int[] uniqueNums = randomFill(border1, border2, stringCount);
-        if (uniqueNums != null) {
+    private void fillDigits(int minBorder, int maxBorder, int lineCount) {
+        int[] uniqueDigits = fillRandom(minBorder, maxBorder, lineCount);
+        if (uniqueDigits != null) {
             System.out.println("Изначальный массив: ");
-            print(uniqueNums, stringCount);
-            initBubbleFilter(uniqueNums);
+            print(uniqueDigits, lineCount);
+            sort(uniqueDigits);
             System.out.println("Отсортированный массив: ");
-            print(uniqueNums, stringCount);
+            print(uniqueDigits, lineCount);
         }
     }
 
-    private int[] randomFill(int border1, int border2, int stringCount) {
+    private int[] fillRandom(int border1, int border2, int stringCount) {
         if (stringCount < 1) {
             System.out.printf("Ошибка: количество чисел в строке не может быть меньше 1 (%s)\n", stringCount);
             return null;
         }
-        int interval = (Math.abs(border2 - border1) + 1);
-        int len = (int) (interval * 0.75);
+        int len = (int) ((Math.abs(border2 - border1) + 1) * 0.75);
         if (len <= 0) {
             System.out.printf("Ошибка: длина массива должна быть больше 0 (%s)\n", len);
             return null;
@@ -42,7 +43,8 @@ public class UniqueDigitsFiller {
         for (int i = 0; i < len; i++) {
             do {
                 isUnique = true;
-                int tempNumCheck = (int) (border1 + (Math.random() * (border2 - border1 + 1)));
+                Random r = new Random();
+                int tempNumCheck = border1 + r.nextInt(border2 - border1 + 1);
                 for (int j = 0; j < i; j++) {
                     if (tempNumCheck == uniqueNums[j]) {
                         isUnique = false;
@@ -55,7 +57,7 @@ public class UniqueDigitsFiller {
         return uniqueNums;
     }
 
-    private void initBubbleFilter(int[] uniqueNums) {
+    private void sort(int[] uniqueNums) {
         int len = uniqueNums.length;
         for (int i = 0; i < len - 1; i++) {
             for (int j = 0; j < len - 1; j++) {
@@ -71,11 +73,15 @@ public class UniqueDigitsFiller {
     private void print(int[] uniqueNums, int stringCount) {
         int count = 0;
         for (int num : uniqueNums) {
-            System.out.printf("%3s ", num);
-            count++;
-            if (count == stringCount) {
-                System.out.println();
-                count = 0;
+            if (uniqueNums.length == stringCount) {
+                System.out.printf("%s ", num);
+            } else {
+                System.out.printf("%3s ", num);
+                count++;
+                if (count == stringCount) {
+                    System.out.println();
+                    count = 0;
+                }
             }
         }
         System.out.println();

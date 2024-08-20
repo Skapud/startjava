@@ -3,12 +3,12 @@ package com.startjava.lesson_2_3_4.array;
 public class AsciiTrianglePrinter {
     public static void main(String[] args) {
         AsciiTrianglePrinter atp = new AsciiTrianglePrinter();
-        atp.init('0', '9', true);
-        atp.init('/', '!', false);
-        atp.init('A', 'J', false);
+        atp.createTriangle('0', '9', true);
+        atp.createTriangle('/', '!', false);
+        atp.createTriangle('A', 'J', false);
     }
 
-    private void init(char minBorder, char maxBorder, boolean ascending) {
+    private void createTriangle(char minBorder, char maxBorder, boolean ascending) {
         if (minBorder > maxBorder) {
             char swap = minBorder;
             minBorder = maxBorder;
@@ -25,9 +25,9 @@ public class AsciiTrianglePrinter {
     private void print(char[] symbols, char minBorder, char maxBorder) {
         int symbolsCount = 1;
         int spaceCount = maxBorder - minBorder;
-        for (char sym : symbols) {
+        for (char symbol : symbols) {
             System.out.print(" ".repeat(spaceCount));
-            System.out.println(String.valueOf(sym).repeat(symbolsCount));
+            System.out.println(String.valueOf(symbol).repeat(symbolsCount));
             symbolsCount += 2;
             spaceCount--;
         }

@@ -3,72 +3,30 @@ package com.startjava.lesson_2_3_4.array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Gallows {
-    private static final String[] HANGED_MAN = {
-            """
-          _________
-          |       |
-          |       ()/
-          |      /||
-          |       //
-          |
-        __|_____
-              \s""",
-
-            """
-          _________
-          |        |
-          |        ()/
-          |       /|
-          |
-          |
-        __|_____
-               \s""",
-            """
-          _________
-          |        |
-          |
-          |
-          |
-          |
-        __|_____
-               \s""",
-            """
-          ___
-          |
-          |
-          |
-          |
-          |
-        __|_____
-               \s""",
-            """
-          |
-          |
-          |
-        __|_____
-               \s""",
-            """
-        __|_____
-               \s""",
-            ""
+public class HangmanGame {
+    private static String[] gallows = {
+            " _________",
+            " |       |",
+            " |       ()/",
+            " |      /||",
+            " |       //",
+            " |",
+            "_|_____"
     };
-
     String[] allLetters = new String[33];
     private int allLettersCount = 0;
     String[] wrongLetters = new String[33];
     private int wrongLettersCount = 0;
     Scanner scanner = new Scanner(System.in);
-
     private String chosenWord;
     private String input;
-    private int remainAttempts = 6;
+    private int remainAttempts = gallows.length;
     private char[] chosenWordChars;
     private char[] currentMask;
     private boolean isEqual;
 
     public static void main(String[] args) {
-        Gallows gallows = new Gallows();
+        HangmanGame gallows = new HangmanGame();
         gallows.init();
         do {
             gallows.inputSym();
@@ -79,8 +37,8 @@ public class Gallows {
     }
 
     private void init() {
-        String[] listNames = {"ВЕЛОСИПЕД", "АТТРАКЦИОН", "АСФИКСИЯ", "ЦЕНТНЕР", "ФРАКЦИЯ"};
-        chosenWord = listNames[(int) (Math.random() * listNames.length)];
+        String[] listWordsGuess = {"ВЕЛОСИПЕД", "АТТРАКЦИОН", "АСФИКСИЯ", "ЦЕНТНЕР", "ФРАКЦИЯ"};
+        chosenWord = listWordsGuess[(int) (Math.random() * listWordsGuess.length)];
         chosenWordChars = chosenWord.toCharArray();
         currentMask = new char[chosenWord.length()];
         for (int i = 0; i < currentMask.length; i++) {
@@ -122,7 +80,7 @@ public class Gallows {
     }
 
     private boolean isCyrillic(String ch) {
-        return String.valueOf(ch).matches("\\p{IsCyrillic}");
+        return ch.matches("\\p{IsCyrillic}");
     }
 
     private void checkMatch() {
@@ -133,7 +91,7 @@ public class Gallows {
                 isGuessed = true;
             }
         }
-        if (isGuessed && remainAttempts < 6) {
+        if (isGuessed && remainAttempts < gallows.length) {
             remainAttempts++;
         }
         if (!isGuessed) {
@@ -145,7 +103,11 @@ public class Gallows {
     }
 
     private void printStatus() {
-        System.out.println(HANGED_MAN[remainAttempts]);
+        if (remainAttempts < gallows.length) {
+            for (int i = 0; i < gallows.length - remainAttempts; i++) {
+                System.out.println(gallows[i]);
+            }
+        }
         System.out.println("Текущее количество попыток: " + remainAttempts);
         for (char sym : currentMask) {
             System.out.print(sym + " ");

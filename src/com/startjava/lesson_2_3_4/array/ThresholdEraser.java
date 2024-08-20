@@ -48,7 +48,7 @@ public class ThresholdEraser {
         System.out.printf("Значение из ячейки по переданному адресу: %.3f%n", randomFloats[index]);
         int count = 0;
         for (int i = 0; i < len; i++) {
-            if (randomFloats[i] < randomFloats[index]) {
+            if (randomFloats[i] > randomFloats[index]) {
                 randomFloats[i] = 0;
                 count++;
             }

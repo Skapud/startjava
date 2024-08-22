@@ -44,11 +44,9 @@ public class Factorial {
 
     private long calcFactorial(int factorialNum) {
         long factorialResult = 1;
-        if (factorialNum > 1) {
-            for (int i = 1; i <= factorialNum; i++) {
+            for (int i = 2; i <= factorialNum; i++) {
                 factorialResult *= i;
             }
-        }
         return factorialResult;
     }
 

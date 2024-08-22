@@ -19,7 +19,7 @@ public class ThresholdEraser {
         init(randomFloats);
         System.out.print("Исходный массив: \n");
         print(randomFloats);
-        deleteElements(randomFloats, index);
+        eraseElements(randomFloats, index);
         System.out.print("Измененный массив: \n");
         print(randomFloats);
         System.out.println();
@@ -43,7 +43,7 @@ public class ThresholdEraser {
         System.out.println();
     }
 
-    private void deleteElements(float[] randomFloats, int index) {
+    private void eraseElements(float[] randomFloats, int index) {
         int len = randomFloats.length;
         System.out.printf("Значение из ячейки по переданному адресу: %.3f%n", randomFloats[index]);
         int count = 0;

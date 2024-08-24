@@ -1,11 +1,24 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.text.DecimalFormat;
 
 public class Calculator {
+    private String formula;
     private double arg1;
     private String mathSign;
     private double arg2;
     private double result;
+
+    public String getFormula() {
+        return formula;
+    }
+
+    public void setFormula(String formula) {
+        if (formula.isBlank()) {
+            throw new RuntimeException("Ошибка: строка является пустой или содержит только пробелы");
+        }
+        this.formula = formula;
+    }
 
     public double getArg1() {
         return arg1;
@@ -31,11 +44,22 @@ public class Calculator {
         this.arg2 = arg2;
     }
 
-    public double getResult() {
-        return result;
+    public void checkFormulaParts(double arg1, double arg2, String mathSign) {
+        if (Double.isNaN(arg1) || Double.isNaN(arg2)) {
+            throw new RuntimeException("Ошибка: введено недопустимое число");
+        }
+        if (mathSign == null || mathSign.isBlank()) {
+            throw new RuntimeException("Ошибка: знак не может быть пустым или содержать пробелы");
+        }
+        if (!mathSign.equals("+") && !mathSign.equals("-") && !mathSign.equals("*") &&
+                !mathSign.equals("/") && !mathSign.equals("%") && !mathSign.equals("^")) {
+            throw new RuntimeException("Ошибка: операция '" + mathSign +
+                    "' не поддерживается." +
+                    "\nДоступны следующие операции: +, -, *, /, ^, %");
+        }
     }
 
-    public void calculate() {
+    public double calculate() {
         switch (mathSign) {
             case "+":
                 result = arg1 + arg2;
@@ -51,19 +75,18 @@ public class Calculator {
                 if (arg2 == 0) {
                     throw new IllegalArgumentException("Ошибка: деление на ноль запрещено");
                 }
-                result = (mathSign == "/") ? arg1 / arg2 : arg1 % arg2;
+                result = (mathSign.equals("/")) ? arg1 / arg2 : Math.IEEEremainder(arg1, arg2);
                 break;
             case "^":
-                result = 1;
-                for (int i = 1; i <= Math.abs(arg2); i++) {
-                    result *= arg1;
-                }
-                result = (arg2 < 0) ? 1 / result : result;
+                result = Math.pow(arg1, arg2);
                 break;
-            default:
-                throw new IllegalArgumentException("Ошибка: операция '" + mathSign + 
-                        "' не поддерживается." + 
-                        "\nДоступны следующие операции: +, -, *, /, ^, % +"); 
         }
+        return result;
+    }
+
+    public void print(double arg1, double arg2, String mathSign, double result) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        System.out.println(df.format(arg1) + " " + mathSign + " " +
+                    df.format(arg2) + " = " + df.format(result));
     }
 }

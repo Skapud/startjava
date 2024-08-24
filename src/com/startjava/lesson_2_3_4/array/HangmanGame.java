@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class HangmanGame {
-    Scanner scanner = new Scanner(System.in);
     private static String[] gallows = {
             " _________",
             " |       |",
@@ -45,6 +44,7 @@ public class HangmanGame {
     }
 
     private String inputLetter() {
+        Scanner scanner = new Scanner(System.in);
         String input;
         boolean isDuplicate;
         do {

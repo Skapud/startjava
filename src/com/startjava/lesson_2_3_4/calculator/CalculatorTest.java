@@ -5,26 +5,30 @@ import java.util.Scanner;
 public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
-        String answer;
-        do {
-            System.out.println("Введите первое число");
-            calculator.setArg1(scanner.nextInt());
-            scanner.nextLine();
-            System.out.println("Введите знак операции (+, -, *, /, ^, %):");
-            calculator.setMathSign(scanner.nextLine());
-            System.out.println("Введите второе число");
-            calculator.setArg2(scanner.nextInt());
-            calculator.calculate();
-            System.out.println(calculator.getArg1() + " " + 
-                    calculator.getMathSign() + " " + 
-                    calculator.getArg2() + " = " + 
-                    calculator.getResult());
-            scanner.nextLine();
-            do {
+        Calculator calc = new Calculator();
+        String answer = "";
+        boolean shouldContinue = true;
+        while (true) {
+            if (shouldContinue) {
+                System.out.println("Введите математическое выражение: a ^ b");
+                calc.setFormula(scanner.nextLine());
+                String[] formulaParts = calc.getFormula().split(" ");
+                calc.setArg1(Integer.parseInt(formulaParts[0]));
+                calc.setMathSign(formulaParts[1]);
+                calc.setArg2(Integer.parseInt(formulaParts[2]));
+                calc.checkFormulaParts(calc.getArg1(), calc.getArg2(), calc.getMathSign());
+                calc.print(calc.getArg1(), calc.getArg2(), calc.getMathSign(), calc.calculate());
                 System.out.println("Хотите продолжить вычисления ? [yes/no]:");
-                answer = scanner.nextLine();
-            } while (!answer.equals("yes") && !answer.equals("no"));
-        } while (answer.equals("yes"));
+                shouldContinue = false;
+            } else if (answer.equals("no")) {
+                break;
+            } else if (answer.equals("yes")) {
+                shouldContinue = true;
+                continue;
+            } else {
+                System.out.println("Введите корректный ответ [yes / no]:");
+            }
+            answer = scanner.nextLine().toLowerCase();
+        }
     }
 }

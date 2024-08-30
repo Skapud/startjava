@@ -1,53 +1,49 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private int arg1;
-    private String mathSign;
-    private int arg2;
+    private static int arg1;
+    private static String mathSign;
+    private static int arg2;
+    private static final int EXPECTED_MATH_EXPRESSION_LENGTH = 3;
 
-    public double getArg1() {
+    public static int getArg1() {
         return arg1;
     }
 
-    public String getMathSign() {
+    public static String getMathSign() {
         return mathSign;
     }
 
-    public double getArg2() {
+    public static int getArg2() {
         return arg2;
     }
 
-    public double calculate(String formula) {
-        String[] formulaParts = formula.split(" ");
-        checkArg(formulaParts[0]);
-        checkArg(formulaParts[2]);
-        arg1 = Integer.parseInt(formulaParts[0]);
-        mathSign = formulaParts[1];
-        arg2 = Integer.parseInt(formulaParts[2]);
-        switch (mathSign) {
-            case "+":
-                return arg1 + arg2;
-            case "-":
-                return arg1 - arg2;
-            case "*":
-                return arg1 * arg2;
-            case "/":
-            case "%":
-                if (arg2 == 0) {
-                    throw new IllegalArgumentException("Ошибка: деление на ноль запрещено");
-                }
-                return (mathSign.equals("/")) ?
-                        (double) arg1 / (double) arg2 : Math.IEEEremainder(arg1, arg2);
-            case "^":
-                return Math.pow(arg1, arg2);
-            default:
-                return Double.NaN;
+    public static double calculate(String mathExpression) throws RuntimeException {
+        String[] parts = mathExpression.trim().split("\\s+");
+        if (parts.length != EXPECTED_MATH_EXPRESSION_LENGTH) {
+            throw new RuntimeException("Ошибка: математическое выражение " +
+                    "должно состоять из двух чисел и одного знака");
         }
+        checkArg(parts[0], parts[2]);
+        mathSign = parts[1];
+        return switch (mathSign) {
+            case "+" -> arg1 + arg2;
+            case "-" -> arg1 - arg2;
+            case "*" -> arg1 * arg2;
+            case "/", "%" -> {
+                if (arg2 == 0) {
+                    throw new RuntimeException("Ошибка: деление на ноль запрещено");
+                }
+                yield (mathSign.equals("/")) ?
+                        (double) arg1 / arg2 : Math.IEEEremainder(arg1, arg2);
+            }
+            case "^" -> Math.pow(arg1, arg2);
+            default -> throw new RuntimeException("Ошибка: неподдерживаемая операция");
+        };
     }
 
-    public void checkArg(String arg) {
-        if (arg == null || !arg.matches("-?\\d+")) {
-            throw new IllegalArgumentException("Ошибка: введено недопустимое число");
-        }
+    private static void checkArg(String partsZero, String partsTwo) {
+        arg1 = Integer.parseInt(partsZero);
+        arg2 = Integer.parseInt(partsTwo);
     }
 }

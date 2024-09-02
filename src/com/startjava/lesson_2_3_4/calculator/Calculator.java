@@ -1,31 +1,16 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private static int arg1;
-    private static String mathSign;
-    private static int arg2;
     private static final int EXPECTED_MATH_EXPRESSION_LENGTH = 3;
 
-    public static int getArg1() {
-        return arg1;
-    }
-
-    public static String getMathSign() {
-        return mathSign;
-    }
-
-    public static int getArg2() {
-        return arg2;
-    }
-
-    public static double calculate(String mathExpression) throws RuntimeException {
-        String[] parts = mathExpression.trim().split("\\s+");
+    public static double calculate(String[] parts) {
         if (parts.length != EXPECTED_MATH_EXPRESSION_LENGTH) {
             throw new RuntimeException("Ошибка: математическое выражение " +
                     "должно состоять из двух чисел и одного знака");
         }
-        checkArg(parts[0], parts[2]);
-        mathSign = parts[1];
+        int arg1 = checkArg(parts[0]);
+        int arg2 = checkArg(parts[2]);
+        String mathSign = parts[1];
         return switch (mathSign) {
             case "+" -> arg1 + arg2;
             case "-" -> arg1 - arg2;
@@ -42,8 +27,13 @@ public class Calculator {
         };
     }
 
-    private static void checkArg(String partsZero, String partsTwo) {
-        arg1 = Integer.parseInt(partsZero);
-        arg2 = Integer.parseInt(partsTwo);
+    private static int checkArg(String part) {
+        int arg;
+        try {
+            arg = Integer.parseInt(part);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Ошибка: введённые аргумент(ы) не являются числовыми");
+        }
+        return arg;
     }
 }

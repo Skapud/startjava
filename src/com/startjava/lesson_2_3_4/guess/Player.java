@@ -4,10 +4,9 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int num;
     private int[] nums = new int[10];
-    private int attemptsLeft = 10;
-    private int count = 0;
+    private int currentAttempt = 0;
+    private int wins = 0;
 
     public Player(String name) {
         this.name = name;
@@ -17,40 +16,43 @@ public class Player {
         return name;
     }
 
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
     public int[] getNums() {
-        return Arrays.copyOf(nums, count);
+        return Arrays.copyOf(nums, currentAttempt);
+    }
+
+    public int getNumInput() {
+        return nums[currentAttempt - 1];
+    }
+
+    public int getCurrentAttempt() {
+        return currentAttempt;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
     public int getAttemptsLeft() {
-        return attemptsLeft;
+        return nums.length - currentAttempt;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void addNum(int num) {
-        nums[count] = num;
-        count++;
+    public boolean addNum(int num, int min, int max) {
+        if (num >= min && num <= max) {
+            nums[currentAttempt] = num;
+            currentAttempt++;
+            return true;
+        }
+        System.out.println("Число должно входить в интервал [" + min +
+                ", " + max + "]. Попробуйте еще раз:");
+        return false;
     }
 
     public void clearNums() {
-        Arrays.fill(nums, 0, count, 0);
-        count = 0;
-        attemptsLeft = 10;
-    }
-
-    public void attemptsDecrease() {
-        if (attemptsLeft > 0) {
-            attemptsLeft--;
-        }
+        Arrays.fill(nums, 0, currentAttempt, 0);
+        currentAttempt = 0;
     }
 }

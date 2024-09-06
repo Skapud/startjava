@@ -10,10 +10,10 @@ public class CalculatorTest {
         do {
             if (answer.equals("yes")) {
                 System.out.println("Введите математическое выражение: a ^ b");
-                String[] parts = scanner.nextLine().trim().split("\\s+");
+                String mathExpression = scanner.nextLine().trim();
                 try {
-                    double result = Calculator.calculate(parts);
-                    print(result, parts[0], parts[1], parts[2]);
+                    double result = Calculator.calculate(mathExpression);
+                    print(result, mathExpression);
                 } catch (RuntimeException e) {
                     System.out.println(e.getMessage());
                 }
@@ -25,8 +25,8 @@ public class CalculatorTest {
         } while (!answer.equals("no"));
     }
 
-    private static void print(double result, String arg1, String mathSign, String arg2) {
+    private static void print(double result, String mathExpression) {
         DecimalFormat df = new DecimalFormat("#.###");
-        System.out.println(arg1 + " " + mathSign + " " + arg2 + " = " + df.format(result));
+        System.out.println(mathExpression + " = " + df.format(result));
     }
 }

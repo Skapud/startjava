@@ -3,7 +3,8 @@ package com.startjava.lesson_2_3_4.calculator;
 public class Calculator {
     private static final int EXPECTED_MATH_EXPRESSION_LENGTH = 3;
 
-    public static double calculate(String[] parts) {
+    public static double calculate(String mathExpression) {
+        String[] parts = mathExpression.split("\\s+");
         if (parts.length != EXPECTED_MATH_EXPRESSION_LENGTH) {
             throw new RuntimeException("Ошибка: математическое выражение " +
                     "должно состоять из двух чисел и одного знака");

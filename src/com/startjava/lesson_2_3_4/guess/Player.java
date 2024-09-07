@@ -3,10 +3,11 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
+    private static final int MAX_ATTEMPTS = 10;
     private String name;
-    private int[] nums = new int[10];
-    private int currentAttempt = 0;
-    private int wins = 0;
+    private int[] nums = new int[MAX_ATTEMPTS];
+    private int currentAttempt;
+    private int wins;
 
     public Player(String name) {
         this.name = name;
@@ -20,8 +21,17 @@ public class Player {
         return Arrays.copyOf(nums, currentAttempt);
     }
 
-    public int getNumInput() {
+    public int getNum() {
         return nums[currentAttempt - 1];
+    }
+
+    public boolean addNum(int num, int min, int max) {
+        if (num >= min && num <= max) {
+            nums[currentAttempt] = num;
+            currentAttempt++;
+            return true;
+        }
+        return false;
     }
 
     public int getCurrentAttempt() {
@@ -32,7 +42,7 @@ public class Player {
         return wins;
     }
 
-    public void setWins(int wins) {
+    public void setWin(int wins) {
         this.wins = wins;
     }
 
@@ -40,18 +50,7 @@ public class Player {
         return nums.length - currentAttempt;
     }
 
-    public boolean addNum(int num, int min, int max) {
-        if (num >= min && num <= max) {
-            nums[currentAttempt] = num;
-            currentAttempt++;
-            return true;
-        }
-        System.out.println("Число должно входить в интервал [" + min +
-                ", " + max + "]. Попробуйте еще раз:");
-        return false;
-    }
-
-    public void clearNums() {
+    public void clear() {
         Arrays.fill(nums, 0, currentAttempt, 0);
         currentAttempt = 0;
     }

@@ -8,11 +8,7 @@ public class GuessNumberTest {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] playerNames = new String[3];
-        for (int i = 0; i < playerNames.length; i++) {
-            System.out.print("Введите имя игрока " + (i + 1) + ": ");
-            playerNames[i] = scanner.nextLine();
-        }
+        String[] playerNames = inputPlayers(scanner);
         GuessNumber game = new GuessNumber(playerNames);
         System.out.println(playerNames[0] + " vs " + playerNames[1] + " vs " + playerNames[2]);
         String answer = YES;
@@ -25,5 +21,14 @@ public class GuessNumberTest {
             }
             answer = scanner.nextLine().toLowerCase();
         } while (!answer.equals(NO));
+    }
+
+    private static String[] inputPlayers(Scanner scanner) {
+        String[] playerNames = new String[GuessNumber.NUMBER_OF_PLAYERS];
+        for (int i = 0; i < GuessNumber.NUMBER_OF_PLAYERS; i++) {
+            System.out.print("Введите имя игрока " + (i + 1) + ": ");
+            playerNames[i] = scanner.nextLine();
+        }
+        return playerNames;
     }
 }

@@ -99,17 +99,16 @@ public class GuessNumber {
     }
 
     private void printResult() {
-        Comparator<Player> playerComparator = Comparator.comparingInt(Player::getWins);
-        Arrays.sort(players, playerComparator);
-        if (players[2].getWins() == 0) {
+        Arrays.sort(players, Comparator.comparingInt(Player::getWins).reversed());
+        if (players[0].getWins() == 0) {
             System.out.println("Общий проигрыш, у каждого игрока по 0 выигранных раундов");
-        } else if (players[2].getWins() == players[0].getWins()) {
+        } else if (players[0].getWins() == players[players.length - 1].getWins()) {
             System.out.println("Общая ничья, у каждого игрока по 1 выигранному раунду");
-        } else if (players[2].getWins() > 1) {
-            System.out.println("Победил игрок " + players[2].getName() +
-                    " с " + players[2].getWins() + " выигранными раундами");
+        } else if (players[0].getWins() > 1) {
+            System.out.println("Победил игрок " + players[0].getName() +
+                    " с " + players[0].getWins() + " выигранными раундами");
         } else {
-            System.out.println("Ничья между " + players[2].getName() + " и " + players[1].getName());
+            System.out.println("Ничья между " + players[0].getName() + " и " + players[1].getName());
         }
     }
 }

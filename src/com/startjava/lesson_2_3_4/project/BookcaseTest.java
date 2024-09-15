@@ -13,17 +13,17 @@ public class BookcaseTest {
                 switch (answer) {
                     case 1 -> {
                         Book book = input(scanner);
-                        bc.add(book);
+                        System.out.println(bc.add(book));
                     }
                     case 2 -> {
                         System.out.println("Введите название удаляемой книги");
-                        bc.delete(scanner.nextLine());
+                        System.out.println(bc.delete(scanner.nextLine()));
                     }
                     case 3 -> {
                         System.out.println("Введите название искомой книги");
                         System.out.println(bc.find(scanner.nextLine()));
                     }
-                    case 4 -> bc.clear();
+                    case 4 -> System.out.println(bc.clear());
                     default -> throw new RuntimeException("Ошибка: необходимо ввести номер из списка ниже");
                 }
                 answer = menuSelection(scanner, bc);
@@ -48,8 +48,21 @@ public class BookcaseTest {
     private static int menuSelection(Scanner scanner, Bookcase bc) {
         System.out.println("Для продолжения работы нажмите клавишу <Enter>");
         scanner.nextLine();
-        bc.print();
+        printBookShelf(bc);
         return printMenu(scanner);
+    }
+
+    private static void printBookShelf(Bookcase bc) {
+        System.out.println("В шкафу книг - " + bc.getBooksCount() +
+                ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
+        for (Book book : bc.getBooks()) {
+            if (book != null) {
+                System.out.printf("| %-48s |\n", book.getAuthor() +
+                        ", " + book.getName() +
+                        ", " + book.getYearRelease());
+                System.out.println("|" + "-".repeat(50) + "|");
+            }
+        }
     }
 
     private static int printMenu(Scanner scanner) {

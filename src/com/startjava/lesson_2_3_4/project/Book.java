@@ -3,12 +3,12 @@ package com.startjava.lesson_2_3_4.project;
 public class Book {
     private String author;
     private String name;
-    private int year;
+    private int yearRelease;
 
-    public Book(String author, String name, int year) {
+    public Book(String author, String name, int yearRelease) {
         this.author = author;
         this.name = name;
-        this.year = year;
+        this.yearRelease = yearRelease;
     }
 
     public String getAuthor() {
@@ -19,8 +19,8 @@ public class Book {
         return name;
     }
 
-    public int getYear() {
-        return year;
+    public int getYearRelease() {
+        return yearRelease;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Book {
         return "Book{" +
                 "author='" + author + '\'' +
                 ", name='" + name + '\'' +
-                ", year=" + year +
+                ", year=" + yearRelease +
                 '}';
     }
 }

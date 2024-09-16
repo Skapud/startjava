@@ -11,30 +11,21 @@ public class BookcaseTest {
         do {
             try {
                 switch (answer) {
-                    case 1 -> {
-                        Book book = input(scanner);
-                        System.out.println(bc.add(book));
-                    }
-                    case 2 -> {
-                        System.out.println("Введите название удаляемой книги");
-                        System.out.println(bc.delete(scanner.nextLine()));
-                    }
-                    case 3 -> {
-                        System.out.println("Введите название искомой книги");
-                        System.out.println(bc.find(scanner.nextLine()));
-                    }
-                    case 4 -> System.out.println(bc.clear());
+                    case 1 -> input(scanner, bc);
+                    case 2 -> search(scanner, bc, 2);
+                    case 3 -> search(scanner, bc, 3);
+                    case 4 -> bc.clear();
                     default -> throw new RuntimeException("Ошибка: необходимо ввести номер из списка ниже");
                 }
-                answer = menuSelection(scanner, bc);
+                answer = selectMenu(scanner, bc);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
-                answer = menuSelection(scanner, bc);
+                answer = selectMenu(scanner, bc);
             }
         } while (answer != 5);
     }
 
-    private static Book input(Scanner scanner) {
+    private static void input(Scanner scanner, Bookcase bc) {
         System.out.println("Введите автора книги:");
         final String author = scanner.nextLine();
         System.out.println("Введите название книги:");
@@ -42,10 +33,21 @@ public class BookcaseTest {
         System.out.println("Введите год издания книги:");
         final int year = scanner.nextInt();
         scanner.nextLine();
-        return new Book(author, name, year);
+        Book book = new Book(author, name, year);
+        bc.add(book);
     }
 
-    private static int menuSelection(Scanner scanner, Bookcase bc) {
+    private static void search(Scanner scanner, Bookcase bc, int switchCase) {
+        System.out.println("Введите название книги:");
+        String name = scanner.nextLine();
+        if (switchCase == 2) {
+            bc.delete(name);
+        } else {
+            System.out.println(bc.find(name));
+        }
+    }
+
+    private static int selectMenu(Scanner scanner, Bookcase bc) {
         System.out.println("Для продолжения работы нажмите клавишу <Enter>");
         scanner.nextLine();
         printBookShelf(bc);
@@ -53,15 +55,12 @@ public class BookcaseTest {
     }
 
     private static void printBookShelf(Bookcase bc) {
+        int bookcaseLength = 50;
         System.out.println("В шкафу книг - " + bc.getBooksCount() +
                 ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
         for (Book book : bc.getBooks()) {
-            if (book != null) {
-                System.out.printf("| %-48s |\n", book.getAuthor() +
-                        ", " + book.getName() +
-                        ", " + book.getYearRelease());
-                System.out.println("|" + "-".repeat(50) + "|");
-            }
+            System.out.printf("| %-48s |\n", book);
+            System.out.println("|" + "-".repeat(bookcaseLength) + "|");
         }
     }
 

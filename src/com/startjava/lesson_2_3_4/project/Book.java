@@ -3,32 +3,20 @@ package com.startjava.lesson_2_3_4.project;
 public class Book {
     private String author;
     private String name;
-    private int yearRelease;
+    private int yearPublished;
 
     public Book(String author, String name, int yearRelease) {
         this.author = author;
         this.name = name;
-        this.yearRelease = yearRelease;
-    }
-
-    public String getAuthor() {
-        return author;
+        this.yearPublished = yearRelease;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getYearRelease() {
-        return yearRelease;
-    }
-
     @Override
     public String toString() {
-        return "Book{" +
-                "author='" + author + '\'' +
-                ", name='" + name + '\'' +
-                ", year=" + yearRelease +
-                '}';
+        return author + ", " + name + ", " + yearPublished;
     }
 }

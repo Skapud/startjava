@@ -12,51 +12,48 @@ public class Bookcase {
     }
 
     public Book[] getBooks() {
-        return books;
+        return Arrays.copyOf(books, booksCount);
     }
 
-    public String add(Book book) {
+    public void add(Book book) {
         if (booksCount >= BOOKCASE_CAPACITY) {
             throw new RuntimeException("Ошибка: на полках кончилось место");
         }
         books[booksCount++] = book;
-        return "Добавление книги..";
     }
 
-    public String delete(String name) {
-        if (books[0] == null) {
-            return "Шкаф пуст";
-        }
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null && books[i].getName().equalsIgnoreCase(name)) {
-                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
-                books[books.length - 1] = null;
-                booksCount--;
-                return "Удаление книги..";
-            }
-        }
-        throw new RuntimeException("Ошибка: книга не найдена");
-    }
-
-    public String find(String name) {
-        if (books[0] == null) {
-            return "Шкаф пуст";
-        }
-        for (Book book : books) {
-            if (book != null && book.getName().equals(name)) {
-                return book.toString();
-            }
-        }
-        throw new RuntimeException("Ошибка: книга не найдена");
-    }
-
-    public String clear() {
+    public void delete(String name) {
         if (booksCount == 0) {
-            return "Шкаф пуст";
+            return;
+        }
+        for (int i = 0; i < booksCount; i++) {
+            if (books[i].getName().equalsIgnoreCase(name)) {
+                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
+                books[--booksCount] = null;
+                return;
+            }
+        }
+        throw new RuntimeException("Ошибка: книга не найдена");
+    }
+
+    public Book find(String name) {
+        if (booksCount == 0) {
+            return null;
+        }
+        for (int i = 0; i < booksCount; i++) {
+            if (books[i].getName().equals(name)) {
+                return books[i];
+            }
+        }
+        throw new RuntimeException("Ошибка: книга не найдена");
+    }
+
+    public void clear() {
+        if (booksCount == 0) {
+            return;
         }
         Arrays.fill(books, 0, booksCount, null);
         booksCount = 0;
-        return "Очищение шкафа..";
     }
 }
 

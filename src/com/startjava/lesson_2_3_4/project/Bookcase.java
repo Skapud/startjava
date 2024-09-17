@@ -28,7 +28,7 @@ public class Bookcase {
         }
         for (int i = 0; i < booksCount; i++) {
             if (books[i].getName().equalsIgnoreCase(name)) {
-                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
+                System.arraycopy(books, i + 1, books, i, booksCount - i - 1);
                 books[--booksCount] = null;
                 return;
             }

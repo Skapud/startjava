@@ -6,6 +6,7 @@ public class Bookcase {
     public static final int BOOKCASE_CAPACITY = 10;
     private int booksCount;
     private Book[] books = new Book[BOOKCASE_CAPACITY];
+    private int bookcaseLength;
 
     public int getBooksCount() {
         return booksCount;
@@ -15,6 +16,14 @@ public class Bookcase {
         return Arrays.copyOf(books, booksCount);
     }
 
+    public int getBookcaseLength() {
+        for (Book book : getBooks()) {
+            int length = book.toString().length();
+            if (bookcaseLength < length) bookcaseLength = length;
+        }
+        return bookcaseLength;
+    }
+
     public void add(Book book) {
         if (booksCount >= BOOKCASE_CAPACITY) {
             throw new RuntimeException("Ошибка: на полках кончилось место");
@@ -22,26 +31,26 @@ public class Bookcase {
         books[booksCount++] = book;
     }
 
-    public void delete(String name) {
+    public boolean delete(String input) {
         if (booksCount == 0) {
-            return;
+            return false;
         }
         for (int i = 0; i < booksCount; i++) {
-            if (books[i].getName().equalsIgnoreCase(name)) {
+            if (books[i].getTitle().equalsIgnoreCase(input)) {
                 System.arraycopy(books, i + 1, books, i, booksCount - i - 1);
                 books[--booksCount] = null;
-                return;
+                return true;
             }
         }
         throw new RuntimeException("Ошибка: книга не найдена");
     }
 
-    public Book find(String name) {
+    public Book find(String input) {
         if (booksCount == 0) {
             return null;
         }
         for (int i = 0; i < booksCount; i++) {
-            if (books[i].getName().equals(name)) {
+            if (books[i].getTitle().equals(input)) {
                 return books[i];
             }
         }

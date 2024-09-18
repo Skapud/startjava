@@ -6,79 +6,35 @@ public class BookcaseTest {
     public static void main(String[] args) {
         Bookcase bc = new Bookcase();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
-        Option answer = Option.ADD_BOOK;
+        Option answer = Option.ERROR;
         do {
             try {
-                selectMenu(answer, scanner, bc);
-                System.out.println("Для продолжения работы нажмите клавишу <Enter>");
-                scanner.nextLine();
                 printBookShelf(bc);
                 printMenu();
-                answer = getUserInput(scanner);
+                answer = Option.getUserInput(scanner);
+                selectMenu(answer, scanner, bc);
+                if (answer != Option.EXIT) printFiller(scanner);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
-                answer = getUserInput(scanner);
             }
         } while (answer != Option.EXIT);
     }
 
-    private static void selectMenu(Option answer, Scanner scanner, Bookcase bc) {
-        switch (answer) {
-            case ADD_BOOK -> input(scanner, bc);
-            case DELETE_BOOK -> delete(scanner, bc);
-            case FIND_BOOK -> search(scanner, bc);
-            case CLEAR_BOOKCASE -> bc.clear();
-            default -> throw new RuntimeException("Ошибка: необходимо ввести номер из списка ниже");
-        }
-    }
-
-    private static void input(Scanner scanner, Bookcase bc) {
-        System.out.println("Введите автора книги:");
-        final String author = scanner.nextLine();
-        System.out.println("Введите название книги:");
-        final String name = scanner.nextLine();
-        System.out.println("Введите год издания книги:");
-        final int year = scanner.nextInt();
-        scanner.nextLine();
-        Book book = new Book(author, name, year);
-        bc.add(book);
-    }
-
-    private static void search(Scanner scanner, Bookcase bc) {
-        System.out.println(bc.find(enterName(scanner)));
-    }
-
-    private static void delete(Scanner scanner, Bookcase bc) {
-        bc.delete(enterName(scanner));
-    }
-
-    private static String enterName(Scanner scanner) {
-        System.out.println("Введите название книги:");
-        return scanner.nextLine();
-    }
-
     private static void printBookShelf(Bookcase bc) {
-        int bookshelfLength = countBookshelfLength(bc);
-        System.out.println("В шкафу книг - " + bc.getBooksCount() +
-                ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
-        for (Book book : bc.getBooks()) {
-            System.out.printf("|%-" + bookshelfLength + "s|\n", book);
-            System.out.println("|" + "-".repeat(bookshelfLength) + "|");
+        if (bc.getBooksCount() == 0) {
+            System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу.");
+        } else {
+            System.out.println("В шкафу книг - " + bc.getBooksCount() +
+                    ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
         }
-    }
-
-    private static int countBookshelfLength(Bookcase bc) {
-        int maxLength = 0;
         for (Book book : bc.getBooks()) {
-            int length = book.toString().length();
-            if (maxLength < length) maxLength = length;
+            System.out.printf("|%-" + bc.getBookcaseLength() + "s|\n", book);
+            System.out.println("|" + "-".repeat(bc.getBookcaseLength()) + "|");
         }
-        return maxLength;
     }
 
     private static void printMenu() {
-        String menu = """
+        System.out.print("""
                 
                 ------Меню:------
                 1. Добавить книгу
@@ -88,37 +44,54 @@ public class BookcaseTest {
                 5. Выход
                 
                 Введите номер опции меню:
-                """;
-        System.out.print(menu);
+                """);
     }
 
-    private static Option getUserInput(Scanner scanner) {
-        int answer = scanner.nextInt();
+    private static void selectMenu(Option answer, Scanner scanner, Bookcase bc) {
+        switch (answer) {
+            case ADD -> save(scanner, bc);
+            case DELETE -> delete(scanner, bc);
+            case FIND -> find(scanner, bc);
+            case CLEAR -> bc.clear();
+            case EXIT -> exit();
+            default -> throw new RuntimeException("Ошибка: необходимо ввести номер из списка ниже");
+        }
+    }
+
+    private static void save(Scanner scanner, Bookcase bc) {
+        System.out.println("Введите автора книги:");
+        final String author = scanner.nextLine();
+        final String title = enterName(scanner);
+        System.out.println("Введите год издания книги:");
+        final int year = scanner.nextInt();
         scanner.nextLine();
-        for (Option option : Option.values()) {
-            if (option.getOption() == answer) {
-                return option;
-            }
-        }
-        return Option.ERROR;
+        Book book = new Book(author, title, year);
+        bc.add(book);
+        System.out.println("Книга сохранена");
     }
 
-    public enum Option {
-        ADD_BOOK(1),
-        DELETE_BOOK(2),
-        FIND_BOOK(3),
-        CLEAR_BOOKCASE(4),
-        EXIT(5),
-        ERROR(-1);
+    private static void delete(Scanner scanner, Bookcase bc) {
+        if (bc.delete(enterName(scanner))) System.out.println("Книга удалена");
+    }
 
-        private final int option;
+    private static void find(Scanner scanner, Bookcase bc) {
+        System.out.println(bc.find(enterName(scanner)));
+    }
 
-        Option(int option) {
-            this.option = option;
-        }
+    private static String enterName(Scanner scanner) {
+        System.out.println("Введите название книги:");
+        return scanner.nextLine();
+    }
 
-        public int getOption() {
-            return option;
-        }
+    private static void exit() {
+        System.out.println("Завершение программы..");
+    }
+
+    private static void printFiller(Scanner scanner) {
+        String input;
+        do {
+            System.out.println("Для продолжения работы нажмите клавишу <Enter>");
+            input = scanner.nextLine();
+        } while (!input.isEmpty());
     }
 }

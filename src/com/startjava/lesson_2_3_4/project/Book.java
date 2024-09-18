@@ -2,21 +2,21 @@ package com.startjava.lesson_2_3_4.project;
 
 public class Book {
     private String author;
-    private String name;
+    private String title;
     private int yearPublished;
 
-    public Book(String author, String name, int yearRelease) {
+    public Book(String author, String title, int yearRelease) {
         this.author = author;
-        this.name = name;
+        this.title = title;
         this.yearPublished = yearRelease;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
     public String toString() {
-        return author + ", " + name + ", " + yearPublished;
+        return author + ", " + title + ", " + yearPublished;
     }
 }

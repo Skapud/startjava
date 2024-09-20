@@ -11,9 +11,10 @@ public class BookcaseTest {
             try {
                 printBookShelf(bc);
                 printMenu();
-                answer = Option.getUserInput(scanner);
+                answer = Option.getMenuItem(scanner.nextInt());
+                scanner.nextLine();
                 selectMenu(answer, scanner, bc);
-                if (answer != Option.EXIT) printFiller(scanner);
+                if (answer != Option.EXIT) inputEnter(scanner);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
@@ -26,10 +27,10 @@ public class BookcaseTest {
         } else {
             System.out.println("В шкафу книг - " + bc.getBooksCount() +
                     ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
-        }
-        for (Book book : bc.getBooks()) {
-            System.out.printf("|%-" + bc.getBookcaseLength() + "s|\n", book);
-            System.out.println("|" + "-".repeat(bc.getBookcaseLength()) + "|");
+            for (Book book : bc.getBooks()) {
+                System.out.printf("|%-" + bc.getBookcaseLength() + "s|\n", book);
+                System.out.println("|" + "-".repeat(bc.getBookcaseLength()) + "|");
+            }
         }
     }
 
@@ -61,24 +62,26 @@ public class BookcaseTest {
     private static void save(Scanner scanner, Bookcase bc) {
         System.out.println("Введите автора книги:");
         final String author = scanner.nextLine();
-        final String title = enterName(scanner);
+        final String title = enterTitle(scanner);
         System.out.println("Введите год издания книги:");
         final int year = scanner.nextInt();
         scanner.nextLine();
         Book book = new Book(author, title, year);
-        bc.add(book);
+        bc.save(book);
         System.out.println("Книга сохранена");
     }
 
     private static void delete(Scanner scanner, Bookcase bc) {
-        if (bc.delete(enterName(scanner))) System.out.println("Книга удалена");
+        if (bc.delete(enterTitle(scanner))) {
+            System.out.println("Книга удалена");
+        }
     }
 
     private static void find(Scanner scanner, Bookcase bc) {
-        System.out.println(bc.find(enterName(scanner)));
+        System.out.println(bc.find(enterTitle(scanner)));
     }
 
-    private static String enterName(Scanner scanner) {
+    private static String enterTitle(Scanner scanner) {
         System.out.println("Введите название книги:");
         return scanner.nextLine();
     }
@@ -87,7 +90,7 @@ public class BookcaseTest {
         System.out.println("Завершение программы..");
     }
 
-    private static void printFiller(Scanner scanner) {
+    private static void inputEnter(Scanner scanner) {
         String input;
         do {
             System.out.println("Для продолжения работы нажмите клавишу <Enter>");

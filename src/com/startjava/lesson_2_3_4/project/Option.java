@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.project;
 
-import java.util.Scanner;
-
 public enum Option {
     ADD(1),
     DELETE(2),
@@ -20,9 +18,7 @@ public enum Option {
         return option;
     }
 
-    public static Option getUserInput(Scanner scanner) {
-        int answer = scanner.nextInt();
-        scanner.nextLine();
+    public static Option getMenuItem(int answer) {
         for (Option option : Option.values()) {
             if (option.getOption() == answer) {
                 return option;

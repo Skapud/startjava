@@ -3,9 +3,9 @@ package com.startjava.lesson_2_3_4.project;
 import java.util.Arrays;
 
 public class Bookcase {
-    public static final int BOOKCASE_CAPACITY = 10;
+    static final int SHELVES = 10;
     private int booksCount;
-    private Book[] books = new Book[BOOKCASE_CAPACITY];
+    private Book[] books = new Book[SHELVES];
     private int bookcaseLength;
 
     public int getBooksCount() {
@@ -21,19 +21,15 @@ public class Bookcase {
     }
 
     public void save(Book book) {
-        if (booksCount >= BOOKCASE_CAPACITY) {
+        if (booksCount >= SHELVES) {
             throw new RuntimeException("Ошибка: на полках кончилось место");
         }
         books[booksCount++] = book;
-        if (book.toString().length() > bookcaseLength) {
-            updateBookcaseLength();
-        }
+        bookcaseLength = Math.max(bookcaseLength, book.toString().length());
     }
 
     public boolean delete(String input) {
-        if (booksCount == 0) {
-            return false;
-        }
+        if (booksCount == 0) return false;
         for (int i = 0; i < booksCount; i++) {
             if (books[i].getTitle().equalsIgnoreCase(input)) {
                 boolean isLongestBook = (bookcaseLength == books[i].toString().length());
@@ -46,17 +42,14 @@ public class Bookcase {
         throw new RuntimeException("Ошибка: книга не найдена");
     }
 
-    public void updateBookcaseLength() {
+    private void updateBookcaseLength() {
         for (Book book : getBooks()) {
-            int length = book.toString().length();
-            if (bookcaseLength < length) bookcaseLength = length;
+            bookcaseLength = Math.max(bookcaseLength, book.toString().length());
         }
     }
 
     public Book find(String input) {
-        if (booksCount == 0) {
-            return null;
-        }
+        if (booksCount == 0) return null;
         for (int i = 0; i < booksCount; i++) {
             if (books[i].getTitle().equals(input)) {
                 return books[i];
@@ -66,9 +59,7 @@ public class Bookcase {
     }
 
     public void clear() {
-        if (booksCount == 0) {
-            return;
-        }
+        if (booksCount == 0) return;
         Arrays.fill(books, 0, booksCount, null);
         booksCount = 0;
     }

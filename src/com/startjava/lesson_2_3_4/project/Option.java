@@ -6,7 +6,7 @@ public enum Option {
     FIND(3),
     CLEAR(4),
     EXIT(5),
-    ERROR(-1);
+    ERROR(0);
 
     private final int option;
 

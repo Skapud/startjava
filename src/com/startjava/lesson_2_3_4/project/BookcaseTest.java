@@ -3,6 +3,18 @@ package com.startjava.lesson_2_3_4.project;
 import java.util.Scanner;
 
 public class BookcaseTest {
+    private static final String MENU = """
+                
+                ------Меню:------
+                1. Добавить книгу
+                2. Удалить книгу
+                3. Найти книгу
+                4. Очистить шкаф
+                5. Выход
+                
+                Введите номер опции меню:
+                """;
+
     public static void main(String[] args) {
         Bookcase bc = new Bookcase();
         Scanner scanner = new Scanner(System.in);
@@ -10,7 +22,7 @@ public class BookcaseTest {
         do {
             try {
                 printBookShelf(bc);
-                printMenu();
+                System.out.print(MENU);
                 answer = Option.getMenuItem(scanner.nextInt());
                 scanner.nextLine();
                 selectMenu(answer, scanner, bc);
@@ -26,26 +38,12 @@ public class BookcaseTest {
             System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
             System.out.println("В шкафу книг - " + bc.getBooksCount() +
-                    ", свободно полок - " + (Bookcase.BOOKCASE_CAPACITY - bc.getBooksCount()) + "\n");
+                    ", свободно полок - " + (Bookcase.SHELVES - bc.getBooksCount()) + "\n");
             for (Book book : bc.getBooks()) {
                 System.out.printf("|%-" + bc.getBookcaseLength() + "s|\n", book);
                 System.out.println("|" + "-".repeat(bc.getBookcaseLength()) + "|");
             }
         }
-    }
-
-    private static void printMenu() {
-        System.out.print("""
-                
-                ------Меню:------
-                1. Добавить книгу
-                2. Удалить книгу
-                3. Найти книгу
-                4. Очистить шкаф
-                5. Выход
-                
-                Введите номер опции меню:
-                """);
     }
 
     private static void selectMenu(Option answer, Scanner scanner, Bookcase bc) {

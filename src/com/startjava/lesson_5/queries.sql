@@ -30,29 +30,30 @@ SELECT *
 \echo роботы, которые уничтожили больше всех kaiju
 SELECT model_name, mark, launch, kaiju_kill
   FROM jaegers
- WHERE kaiju_kill > 10
+ WHERE kaiju_kill = (SELECT MAX(kaiju_kill) FROM jaegers)
  ORDER BY model_name;
 
 \echo средний вес роботов, округлённый 3-х знаков после запятой
 SELECT ROUND(AVG(weight), 3) AS weight_avg
   FROM jaegers;
 
-\echo увеличение на 1 количества уничтоженных kaiju у неразрушенных роботов
+\echo увеличение на 1 количество уничтоженных kaiju у неразрушенных роботов
 UPDATE jaegers
-SET kaiju_kill = kaiju_kill + 1
-WHERE status = 'Active';
+   SET kaiju_kill = kaiju_kill + 1
+ WHERE status = 'Active';
 
 \echo вся таблица
 SELECT *
-FROM jaegers
-ORDER BY model_name;
+  FROM jaegers
+ ORDER BY model_name;
 
 \echo удалить всех уничтоженных роботов
-DELETE FROM jaegers
-WHERE status = 'Destroyed';
+DELETE
+  FROM jaegers
+ WHERE status = 'Destroyed';
 
 \echo оставшиеся роботы
 SELECT *
-FROM jaegers
-ORDER BY model_name;
+  FROM jaegers
+ ORDER BY model_name;
 
